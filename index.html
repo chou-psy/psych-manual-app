@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理使用手冊</title>
+<style>
+:root{
+  --bg:#f6f1ea;
+  --paper:#fffaf3;
+  --ink:#22201d;
+  --muted:#736b62;
+  --line:#e4d8ca;
+  --accent:#8f5f4a;
+  --accent2:#c77f5f;
+  --soft:#efe3d5;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
+.app{
+  max-width:520px;
+  margin:0 auto;
+  min-height:100vh;
+  padding:22px 18px 92px;
+}
+.header{
+  padding:10px 2px 18px;
+}
+.kicker{
+  font-size:13px;
+  letter-spacing:.08em;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+h1{
+  font-size:28px;
+  line-height:1.25;
+  margin:0;
+  font-weight:750;
+}
+.subtitle{
+  margin-top:10px;
+  color:var(--muted);
+  line-height:1.65;
+  font-size:15px;
+}
+.card{
+  background:rgba(255,250,243,.96);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:20px;
+  margin:14px 0;
+  box-shadow:0 12px 30px rgba(73,50,33,.07);
+}
+.section-title{
+  font-size:18px;
+  font-weight:700;
+  margin:0 0 8px;
+}
+.hint{
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.65;
+  margin:0 0 14px;
+}
+.option-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+.option{
+  border:1px solid var(--line);
+  background:#fffdf8;
+  border-radius:16px;
+  padding:12px 10px;
+  font-size:15px;
+  line-height:1.35;
+  color:var(--ink);
+  text-align:left;
+}
+.option.selected{
+  border-color:var(--accent);
+  background:#efe1d5;
+  box-shadow:inset 0 0 0 1px var(--accent);
+}
+textarea{
+  width:100%;
+  min-height:118px;
+  resize:vertical;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  font-size:16px;
+  line-height:1.65;
+  background:#fffdf8;
+  color:var(--ink);
+  outline:none;
+}
+textarea:focus{
+  border-color:var(--accent);
+}
+.row{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:16px;
+}
+button.primary,
+button.secondary,
+button.danger{
+  border:0;
+  border-radius:999px;
+  padding:12px 18px;
+  font-size:15px;
+  cursor:pointer;
+}
+button.primary{
+  background:var(--ink);
+  color:white;
+}
+button.secondary{
+  background:var(--soft);
+  color:var(--ink);
+}
+button.danger{
+  background:#8f3d32;
+  color:white;
+}
+button:disabled{
+  opacity:.45;
+}
+.step-indicator{
+  display:flex;
+  gap:7px;
+  margin:6px 0 18px;
+}
+.dot{
+  height:7px;
+  flex:1;
+  border-radius:999px;
+  background:#ded1c4;
+}
+.dot.active{
+  background:var(--accent);
+}
+.hidden{display:none}
+.feedback{
+  font-size:18px;
+  line-height:1.75;
+}
+.meta{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.record{
+  border-top:1px solid var(--line);
+  padding:14px 0;
+}
+.record:first-child{border-top:0}
+.record-title{
+  font-weight:700;
+  margin-bottom:6px;
+}
+.record-note{
+  white-space:pre-wrap;
+  line-height:1.65;
+  margin-top:8px;
+}
+.pill-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:8px;
+}
+.pill{
+  display:inline-flex;
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--soft);
+  font-size:13px;
+}
+.nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  background:rgba(255,250,243,.94);
+  backdrop-filter:blur(14px);
+  border-top:1px solid var(--line);
+  padding:10px 10px 14px;
+}
+.nav-inner{
+  max-width:520px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:6px;
+}
+.nav button{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:10px 4px;
+  border-radius:14px;
+  font-size:14px;
+}
+.nav button.active{
+  background:var(--soft);
+  color:var(--ink);
+  font-weight:700;
+}
+.empty{
+  color:var(--muted);
+  line-height:1.7;
+}
+.summary-line{
+  line-height:1.8;
+  margin:10px 0;
+}
+@media(max-width:390px){
+  .option-grid{grid-template-columns:1fr}
+  h1{font-size:25px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="header">
+    <div class="kicker">個人心理使用手冊</div>
+    <h1>今天先留下一點線索</h1>
+    <p class="subtitle">不用把所有事情都說清楚。這裡先記下狀態、身體和片段，之後你會慢慢看見自己的模式。</p>
+  </header>
+
+  <main id="homePage">
+    <section class="card">
+      <p class="section-title">今日記錄</p>
+      <p class="hint">用幾個選擇先靠近今天的狀態，不需要精準。</p>
+      <button class="primary" onclick="startDaily()">開始記錄</button>
+      <button class="secondary" onclick="startQuick()">隨手記一筆</button>
+    </section>
+
+    <section class="card">
+      <p class="section-title">最近提醒</p>
+      <div id="homeInsight" class="empty">目前還沒有足夠紀錄。先留下幾筆，這裡會開始整理常出現的線索。</div>
+    </section>
+  </main>
+
+  <main id="recordPage" class="hidden">
+    <section class="card">
+      <div class="step-indicator">
+        <div class="dot" id="dot1"></div>
+        <div class="dot" id="dot2"></div>
+        <div class="dot" id="dot3"></div>
+        <div class="dot" id="dot4"></div>
+      </div>
+
+      <div id="step1">
+        <p class="section-title">今天的你，比較接近哪幾種狀態</p>
+        <p class="hint">可以選一個，也可以選兩三個。人的狀態常常混在一起。</p>
+        <div class="option-grid" id="stateOptions"></div>
+      </div>
+
+      <div id="step2" class="hidden">
+        <p class="section-title">身體現在比較有感的是哪裡</p>
+        <p class="hint">身體有時候比語言更早留下訊號。</p>
+        <div class="option-grid" id="bodyOptions"></div>
+      </div>
+
+      <div id="step3" class="hidden">
+        <p class="section-title">今天主要和什麼有關</p>
+        <p class="hint">這只是分類，不是解釋。</p>
+        <div class="option-grid" id="contextOptions"></div>
+      </div>
+
+      <div id="step4" class="hidden">
+        <p class="section-title">有沒有一個片段想先留下來</p>
+        <p class="hint">一句話也可以。空著也可以。</p>
+        <textarea id="note" placeholder="例如：今天某個瞬間，我突然不太想說話。"></textarea>
+        <p class="section-title" style="margin-top:18px;">今天有沒有一點點比較好的片段</p>
+        <p class="hint">很小也可以，例如一杯熱飲、一段安靜、一次深一點的呼吸。</p>
+        <textarea id="positiveMoment" placeholder="可以空白。"></textarea>
+      </div>
+
+      <div class="row">
+        <button class="secondary" id="backBtn" onclick="prevStep()">返回</button>
+        <button class="primary" id="nextBtn" onclick="nextStep()">下一步</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="feedbackPage" class="hidden">
+    <section class="card">
+      <p class="section-title">這一筆先放在這裡</p>
+      <div id="feedbackText" class="feedback"></div>
+      <div class="row">
+        <button class="secondary" onclick="showPage('recordsPage')">看紀錄</button>
+        <button class="primary" onclick="showPage('homePage')">回首頁</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="recordsPage" class="hidden">
+    <section class="card">
+      <p class="section-title">紀錄</p>
+      <p class="hint">資料目前儲存在這台裝置的瀏覽器裡。</p>
+      <div id="recordsList"></div>
+    </section>
+  </main>
+
+  <main id="summaryPage" class="hidden">
+    <section class="card">
+      <p class="section-title">週整理</p>
+      <p class="hint">這裡先用最近七天的紀錄，整理出常見狀態與身體訊號。</p>
+      <div id="weeklySummary"></div>
+    </section>
+  </main>
+
+  <main id="settingsPage" class="hidden">
+    <section class="card">
+      <p class="section-title">資料與提醒</p>
+      <p class="hint">這個工具用來協助自我記錄與整理，不能取代心理治療、醫療診斷或緊急協助。若有立即傷害自己或他人的風險，請立刻聯絡當地緊急資源，或尋求身邊可信任的人協助。</p>
+      <p class="hint">目前資料只儲存在你使用的這台裝置與瀏覽器中。更換裝置、清除瀏覽器資料或使用無痕模式，可能會讓資料消失。</p>
+      <button class="secondary" onclick="exportData()">匯出資料</button>
+      <button class="danger" onclick="clearData()">清除全部資料</button>
+    </section>
+  </main>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button id="navHome" class="active" onclick="showPage('homePage')">首頁</button>
+    <button id="navRecords" onclick="showPage('recordsPage')">紀錄</button>
+    <button id="navSummary" onclick="showPage('summaryPage')">週整理</button>
+    <button id="navSettings" onclick="showPage('settingsPage')">設定</button>
+  </div>
+</nav>
+
+<script>
+const STORAGE_KEY = "psychManualEntriesV2";
+
+const stateList = [
+  "一直撐著","想躲起來","心裡很吵","很煩","很空","有點麻木",
+  "不想說話","很想被理解","很想逃開","有點委屈","有點生氣","有點怕",
+  "提不起勁","想把事情做好","腦袋停不下來","覺得自己很糟",
+  "比較平靜","還可以","有一點亮起來","說不上來"
+];
+
+const bodyList = [
+  "胸口緊","肩頸硬","頭脹","胃不舒服","呼吸變淺","身體很重",
+  "想睡","坐立難安","心跳變快","喉嚨卡住","眼睛酸","手腳冰冷",
+  "背很緊","下巴咬緊","肚子緊","全身沒力","沒什麼感覺",
+  "比較放鬆","有一點力氣","說不上來"
+];
+
+const contextList = [
+  "工作","家人","伴侶","朋友","金錢","健康","睡眠","社群媒體",
+  "自我要求","未來","回憶","人際訊息","時間壓力","沒有特定事件"
+];
+
+let currentStep = 1;
+let currentType = "daily";
+let draft = { states:[], bodySignals:[], contexts:[] };
+
+function getEntries(){
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+}
+
+function setEntries(entries){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+}
+
+function renderOptions(id, list, key){
+  const wrap = document.getElementById(id);
+  wrap.innerHTML = "";
+  list.forEach(item => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "option";
+    btn.textContent = item;
+    btn.onclick = () => {
+      const arr = draft[key];
+      const index = arr.indexOf(item);
+      if(index >= 0){
+        arr.splice(index,1);
+        btn.classList.remove("selected");
+      }else{
+        arr.push(item);
+        btn.classList.add("selected");
+      }
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+function startDaily(){
+  currentType = "daily";
+  resetDraft();
+  showPage("recordPage");
+}
+
+function startQuick(){
+  currentType = "quick";
+  resetDraft();
+  showPage("recordPage");
+}
+
+function resetDraft(){
+  currentStep = 1;
+  draft = { states:[], bodySignals:[], contexts:[] };
+  document.getElementById("note").value = "";
+  document.getElementById("positiveMoment").value = "";
+  renderOptions("stateOptions", stateList, "states");
+  renderOptions("bodyOptions", bodyList, "bodySignals");
+  renderOptions("contextOptions", contextList, "contexts");
+  updateStep();
+}
+
+function updateStep(){
+  for(let i=1;i<=4;i++){
+    document.getElementById("step"+i).classList.toggle("hidden", i !== currentStep);
+    document.getElementById("dot"+i).classList.toggle("active", i <= currentStep);
+  }
+  document.getElementById("backBtn").style.visibility = currentStep === 1 ? "hidden" : "visible";
+  document.getElementById("nextBtn").textContent = currentStep === 4 ? "儲存" : "下一步";
+}
+
+function nextStep(){
+  if(currentStep < 4){
+    currentStep++;
+    updateStep();
+  }else{
+    saveEntry();
+  }
+}
+
+function prevStep(){
+  if(currentStep > 1){
+    currentStep--;
+    updateStep();
+  }
+}
+
+function saveEntry(){
+  const entry = {
+    id: "entry_" + Date.now(),
+    date: new Date().toISOString(),
+    type: currentType,
+    states: draft.states,
+    bodySignals: draft.bodySignals,
+    contexts: draft.contexts,
+    note: document.getElementById("note").value.trim(),
+    positiveMoment: document.getElementById("positiveMoment").value.trim(),
+    feedback: makeFeedback(draft.states, draft.bodySignals),
+    createdAt: new Date().toISOString()
+  };
+
+  const entries = getEntries();
+  entries.push(entry);
+  setEntries(entries);
+
+  document.getElementById("feedbackText").textContent = entry.feedback;
+  showPage("feedbackPage");
+}
+
+function makeFeedback(states, bodySignals){
+  const s = states.join(" ");
+  const b = bodySignals.join(" ");
+  if(s.includes("一直撐著")){
+    return "今天有一部分的你，花了不少力氣讓事情維持在表面正常。";
+  }
+  if(s.includes("想躲起來") || s.includes("很想逃開")){
+    return "想離遠一點的感覺先被記下來。它可能是某種過滿，也可能是一種暫時的保護。";
+  }
+  if(s.includes("很空") || s.includes("有點麻木")){
+    return "空掉或麻木的地方，不一定需要立刻被說明。先留下這一筆就好。";
+  }
+  if(s.includes("心裡很吵") || s.includes("腦袋停不下來")){
+    return "裡面同時有太多聲音時，先記下一小段，就已經是在替自己留位置。";
+  }
+  if(s.includes("有一點亮起來") || s.includes("比較平靜")){
+    return "這一點比較鬆動的片段值得被保存。之後回看時，它可能會成為一個線索。";
+  }
+  if(b.includes("胸口緊") || b.includes("呼吸變淺")){
+    return "身體已經先留下訊號。語言還沒跟上，也沒有關係。";
+  }
+  return "這一筆可以先留著，不需要急著把它整理成答案。";
+}
+
+function showPage(pageId){
+  ["homePage","recordPage","feedbackPage","recordsPage","summaryPage","settingsPage"].forEach(id=>{
+    document.getElementById(id).classList.toggle("hidden", id !== pageId);
+  });
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  if(pageId==="homePage") document.getElementById("navHome").classList.add("active");
+  if(pageId==="recordsPage") document.getElementById("navRecords").classList.add("active");
+  if(pageId==="summaryPage") document.getElementById("navSummary").classList.add("active");
+  if(pageId==="settingsPage") document.getElementById("navSettings").classList.add("active");
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+
+function formatDate(iso){
+  const d = new Date(iso);
+  return d.toLocaleString("zh-TW", { month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+}
+
+function renderRecords(){
+  const entries = getEntries().slice().reverse();
+  const wrap = document.getElementById("recordsList");
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">目前還沒有紀錄。</div>';
+    return;
+  }
+  wrap.innerHTML = entries.map(e=>`
+    <div class="record">
+      <div class="record-title">${formatDate(e.date)}</div>
+      <div class="pill-list">
+        ${(e.states||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+        ${(e.bodySignals||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+      </div>
+      ${e.contexts && e.contexts.length ? `<div class="meta" style="margin-top:8px;">${e.contexts.map(escapeHtml).join("、")}</div>` : ""}
+      ${e.note ? `<div class="record-note">${escapeHtml(e.note)}</div>` : ""}
+      ${e.positiveMoment ? `<div class="record-note">比較好的片段：${escapeHtml(e.positiveMoment)}</div>` : ""}
+      <div class="meta" style="margin-top:8px;">${escapeHtml(e.feedback || "")}</div>
+      <button class="secondary" onclick="deleteEntry('${e.id}')">刪除</button>
+    </div>
+  `).join("");
+}
+
+function deleteEntry(id){
+  if(!confirm("確定要刪除這一筆紀錄嗎？")) return;
+  setEntries(getEntries().filter(e=>e.id!==id));
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+
+function recentEntries(days){
+  const now = Date.now();
+  return getEntries().filter(e => now - new Date(e.date).getTime() <= days*24*60*60*1000);
+}
+
+function countItems(entries, key){
+  const counts = {};
+  entries.forEach(e => (e[key]||[]).forEach(item => counts[item] = (counts[item]||0)+1));
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+}
+
+function renderSummary(){
+  const entries = recentEntries(7);
+  const wrap = document.getElementById("weeklySummary");
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">最近七天還沒有紀錄。先累積幾筆，這裡會開始整理。</div>';
+    return;
+  }
+  const states = countItems(entries,"states").slice(0,5);
+  const bodies = countItems(entries,"bodySignals").slice(0,5);
+  const contexts = countItems(entries,"contexts").slice(0,5);
+  const positives = entries.map(e=>e.positiveMoment).filter(Boolean).slice(-3);
+
+  wrap.innerHTML = `
+    <div class="summary-line">最近七天共留下 ${entries.length} 筆紀錄。</div>
+    <div class="summary-line"><strong>常出現的狀態：</strong>${states.length ? states.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line"><strong>常出現的身體訊號：</strong>${bodies.length ? bodies.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line"><strong>常見場景：</strong>${contexts.length ? contexts.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line"><strong>可能值得留意：</strong>${makeInsight(states,bodies)}</div>
+    <div class="summary-line"><strong>比較好的片段：</strong>${positives.length ? positives.map(escapeHtml).join("；") : "這週還沒有特別留下。"}</div>
+  `;
+}
+
+function makeInsight(states,bodies){
+  const repeatedState = states.find(x=>x[1]>=3);
+  const repeatedBody = bodies.find(x=>x[1]>=3);
+  if(repeatedState && repeatedBody){
+    return `「${repeatedState[0]}」和「${repeatedBody[0]}」最近比較常一起出現。它們可能是你近期的壓力線索。`;
+  }
+  if(repeatedState){
+    return `「${repeatedState[0]}」最近出現得比較頻繁。先不用處理，先看見它。`;
+  }
+  if(repeatedBody){
+    return `「${repeatedBody[0]}」最近出現得比較頻繁。身體可能正在留下訊號。`;
+  }
+  return "目前還看不出穩定模式，可以再多累積幾筆。";
+}
+
+function renderHomeInsight(){
+  const entries = recentEntries(7);
+  const el = document.getElementById("homeInsight");
+  if(!entries.length){
+    el.textContent = "目前還沒有足夠紀錄。先留下幾筆，這裡會開始整理常出現的線索。";
+    return;
+  }
+  const states = countItems(entries,"states");
+  const bodies = countItems(entries,"bodySignals");
+  el.textContent = makeInsight(states,bodies);
+}
+
+function exportData(){
+  const data = JSON.stringify(getEntries(), null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "psych-manual-entries.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function clearData(){
+  if(!confirm("確定要清除全部資料嗎？這個動作無法復原。")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  showPage("homePage");
+}
+
+function escapeHtml(text){
+  return String(text).replace(/[&<>"']/g, m => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#039;"
+  }[m]));
+}
+
+renderHomeInsight();
+</script>
+</body>
+</html>
