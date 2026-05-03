@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理使用手冊</title>
+<style>
+:root{
+  --charcoal:#151817;
+  --charcoal-soft:#202521;
+  --ink:#f4efe6;
+  --muted:rgba(244,239,230,.64);
+  --faint:rgba(244,239,230,.38);
+  --glass:rgba(255,255,255,.105);
+  --glass-strong:rgba(255,255,255,.155);
+  --line:rgba(255,255,255,.16);
+  --mint:#b8e5d6;
+  --mint-deep:#78b8a4;
+  --sand:#d8b98f;
+  --terracotta:#a36b56;
+  --lavender:#b7b1d9;
+  --bluegrey:#8fa4a8;
+  --shadow:0 28px 90px rgba(0,0,0,.36);
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(184,229,214,.35), transparent 28%),
+    radial-gradient(circle at 86% 16%, rgba(216,185,143,.30), transparent 29%),
+    radial-gradient(circle at 52% 86%, rgba(163,107,86,.32), transparent 36%),
+    linear-gradient(145deg,#111312,#202521 54%,#161716);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:-35%;
+  background:conic-gradient(from 160deg at 50% 50%, rgba(184,229,214,.09), rgba(216,185,143,.12), rgba(183,177,217,.08), rgba(163,107,86,.1), rgba(184,229,214,.09));
+  filter:blur(62px);
+  animation:aurora 26s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes aurora{
+  from{transform:translate3d(-2%,1%,0) rotate(0deg) scale(1)}
+  to{transform:translate3d(2%,-1%,0) rotate(9deg) scale(1.08)}
+}
+.snow{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+.snow span{
+  position:absolute;
+  top:-12vh;
+  border-radius:50%;
+  background:rgba(255,255,255,.72);
+  box-shadow:0 0 16px rgba(255,255,255,.42);
+  animation:fall linear infinite;
+}
+.snow .near{width:5px;height:5px;filter:blur(.2px);opacity:.78}
+.snow .mid{width:3px;height:3px;filter:blur(.5px);opacity:.56}
+.snow .far{width:2px;height:2px;filter:blur(1px);opacity:.36}
+.snow span:nth-child(1){left:5%;animation-duration:16s;animation-delay:-1s}
+.snow span:nth-child(2){left:14%;animation-duration:25s;animation-delay:-8s}
+.snow span:nth-child(3){left:22%;animation-duration:19s;animation-delay:-5s}
+.snow span:nth-child(4){left:31%;animation-duration:30s;animation-delay:-14s}
+.snow span:nth-child(5){left:38%;animation-duration:17s;animation-delay:-10s}
+.snow span:nth-child(6){left:46%;animation-duration:27s;animation-delay:-3s}
+.snow span:nth-child(7){left:53%;animation-duration:21s;animation-delay:-12s}
+.snow span:nth-child(8){left:61%;animation-duration:32s;animation-delay:-16s}
+.snow span:nth-child(9){left:69%;animation-duration:18s;animation-delay:-7s}
+.snow span:nth-child(10){left:76%;animation-duration:26s;animation-delay:-11s}
+.snow span:nth-child(11){left:84%;animation-duration:20s;animation-delay:-4s}
+.snow span:nth-child(12){left:92%;animation-duration:31s;animation-delay:-18s}
+.snow span:nth-child(13){left:9%;animation-duration:34s;animation-delay:-20s}
+.snow span:nth-child(14){left:27%;animation-duration:29s;animation-delay:-22s}
+.snow span:nth-child(15){left:58%;animation-duration:36s;animation-delay:-17s}
+.snow span:nth-child(16){left:88%;animation-duration:28s;animation-delay:-24s}
+@keyframes fall{
+  0%{transform:translate3d(0,-10vh,0);opacity:0}
+  10%{opacity:var(--op,.7)}
+  100%{transform:translate3d(54px,116vh,0);opacity:0}
+}
+.app{
+  position:relative;
+  z-index:1;
+  max-width:520px;
+  min-height:100vh;
+  margin:0 auto;
+  padding:28px 20px 116px;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:50px;
+}
+.brand{
+  letter-spacing:.18em;
+  font-size:12px;
+  color:var(--muted);
+}
+.date{
+  text-align:right;
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  line-height:1;
+}
+.date .month{
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.date .day{font-size:36px}
+.page{display:none}
+.page.active{display:block}
+.hero{
+  padding-left:4px;
+  margin-bottom:34px;
+}
+h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-weight:500;
+  font-size:52px;
+  line-height:1.04;
+  letter-spacing:-.045em;
+}
+.hero p{
+  margin:24px 0 0 28px;
+  max-width:360px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:2;
+}
+.orb-wrap{
+  position:relative;
+  min-height:322px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:4px 0 30px;
+}
+.orb{
+  --orb1:rgba(184,229,214,.88);
+  --orb2:rgba(216,185,143,.62);
+  --orb3:rgba(163,107,86,.42);
+  width:238px;
+  height:238px;
+  border-radius:46% 54% 52% 48%;
+  background:
+    radial-gradient(circle at 31% 26%, rgba(255,255,255,.85), transparent 17%),
+    radial-gradient(circle at 70% 75%, var(--orb3), transparent 36%),
+    linear-gradient(145deg,var(--orb1),var(--orb2) 58%,var(--orb3));
+  box-shadow:
+    inset 22px 24px 54px rgba(255,255,255,.18),
+    inset -26px -32px 66px rgba(24,27,26,.22),
+    0 28px 90px rgba(184,229,214,.16),
+    0 36px 110px rgba(0,0,0,.34);
+  filter:saturate(.88);
+  animation:morph 10s ease-in-out infinite alternate;
+  transition:background 900ms ease, filter 900ms ease, box-shadow 900ms ease, transform 900ms ease;
+}
+.orb.breathing{
+  animation:breath 10s ease-in-out infinite;
+}
+@keyframes morph{
+  0%{border-radius:46% 54% 52% 48%;transform:translateY(0) scale(1)}
+  50%{border-radius:56% 44% 48% 52%;transform:translateY(-8px) scale(1.02)}
+  100%{border-radius:43% 57% 58% 42%;transform:translateY(4px) scale(.99)}
+}
+@keyframes breath{
+  0%{transform:scale(.82);filter:brightness(.82) saturate(.72)}
+  40%{transform:scale(1.20);filter:brightness(1.18) saturate(1.05)}
+  100%{transform:scale(.82);filter:brightness(.82) saturate(.72)}
+}
+.orb-note{
+  position:absolute;
+  bottom:0;
+  left:20px;
+  right:20px;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
+}
+.glass{
+  background:linear-gradient(145deg, rgba(255,255,255,.145), rgba(255,255,255,.065));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(24px);
+  border-radius:34px;
+}
+.panel{
+  padding:26px;
+  margin:22px 0;
+}
+.panel-title{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:25px;
+  font-weight:500;
+  margin:0 0 12px;
+  letter-spacing:-.02em;
+}
+.panel-text{
+  color:var(--muted);
+  line-height:1.95;
+  margin:0 0 22px;
+  font-size:15px;
+}
+.actions{
+  display:grid;
+  gap:14px;
+  margin-top:26px;
+}
+.lux-button{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.085);
+  color:var(--ink);
+  min-height:58px;
+  border-radius:999px;
+  font-size:15px;
+  letter-spacing:.06em;
+  backdrop-filter:blur(16px);
+  box-shadow:0 18px 46px rgba(0,0,0,.18);
+  font-family:inherit;
+}
+.lux-button.primary{
+  background:linear-gradient(135deg, rgba(184,229,214,.86), rgba(216,185,143,.62));
+  color:#16201d;
+  font-weight:700;
+}
+.step-mark{
+  display:flex;
+  gap:8px;
+  margin-bottom:28px;
+}
+.step-mark span{
+  height:4px;
+  flex:1;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+}
+.step-mark span.active{
+  background:linear-gradient(90deg,var(--mint),var(--sand));
+}
+.prompt{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:30px;
+  line-height:1.35;
+  letter-spacing:-.03em;
+  margin:0 0 12px;
+}
+.subprompt{
+  color:var(--muted);
+  line-height:1.85;
+  font-size:15px;
+  margin:0 0 26px;
+}
+.orbit-options{
+  min-height:390px;
+}
+.choice{
+  display:inline-flex;
+  min-height:54px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  margin:7px 5px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:999px;
+  background:rgba(255,255,255,.078);
+  color:rgba(245,240,231,.86);
+  backdrop-filter:blur(14px);
+  box-shadow:0 14px 32px rgba(0,0,0,.16);
+  font-size:15px;
+  font-family:inherit;
+}
+.choice.selected{
+  background:linear-gradient(135deg, rgba(184,229,214,.78), rgba(216,185,143,.56));
+  color:#17201d;
+  border-color:rgba(255,255,255,.35);
+  font-weight:700;
+}
+textarea{
+  width:100%;
+  min-height:180px;
+  color:var(--ink);
+  background:rgba(255,255,255,.078);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:30px;
+  padding:20px;
+  font-size:16px;
+  line-height:1.9;
+  outline:none;
+  resize:vertical;
+  backdrop-filter:blur(18px);
+  font-family:inherit;
+}
+textarea:focus{
+  border-color:rgba(184,229,214,.54);
+  box-shadow:0 0 0 5px rgba(184,229,214,.08);
+}
+textarea::placeholder{color:rgba(245,240,231,.36)}
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:26px;
+}
+.nav-row .lux-button{
+  min-width:0;
+  flex:1;
+}
+.breath-screen{
+  text-align:center;
+  padding:28px 0 10px;
+}
+.breath-label{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:34px;
+  line-height:1.3;
+  margin:8px 0 12px;
+}
+.breath-count{
+  color:var(--muted);
+  letter-spacing:.12em;
+  font-size:13px;
+  margin-top:16px;
+}
+.feedback{
+  font-size:21px;
+  line-height:1.9;
+  color:rgba(245,240,231,.9);
+}
+.record{
+  padding:20px 0;
+  border-top:1px solid rgba(255,255,255,.11);
+}
+.record:first-child{border-top:0}
+.record-time{
+  color:var(--muted);
+  font-size:13px;
+  letter-spacing:.08em;
+  margin-bottom:12px;
+}
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.pill{
+  border-radius:999px;
+  padding:7px 11px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(245,240,231,.78);
+  font-size:13px;
+}
+.note{
+  margin-top:14px;
+  line-height:1.9;
+  color:rgba(245,240,231,.88);
+  white-space:pre-wrap;
+}
+.light-map{
+  min-height:260px;
+  position:relative;
+  margin:10px 0 20px;
+}
+.light-dot{
+  position:absolute;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--mint);
+  box-shadow:0 0 24px rgba(184,229,214,.62);
+  opacity:.72;
+}
+.nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:3;
+  padding:12px 14px 18px;
+  background:linear-gradient(to top, rgba(23,26,25,.94), rgba(23,26,25,.56), transparent);
+}
+.nav-inner{
+  max-width:520px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.nav button{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  color:rgba(245,240,231,.58);
+  backdrop-filter:blur(18px);
+  border-radius:18px;
+  min-height:46px;
+  font-size:13px;
+  font-family:inherit;
+}
+.nav button.active{
+  color:#17201d;
+  background:linear-gradient(135deg, rgba(184,229,214,.88), rgba(216,185,143,.62));
+  font-weight:700;
+}
+.empty{
+  color:var(--muted);
+  line-height:1.9;
+}
+.summary-line{
+  line-height:1.95;
+  margin:13px 0;
+  color:rgba(245,240,231,.86);
+}
+.small-danger{
+  margin-top:14px;
+  border:1px solid rgba(168,108,85,.38);
+  color:rgba(245,240,231,.8);
+  background:rgba(168,108,85,.14);
+}
+
+.precursor-alert{
+  padding:18px 20px;
+  margin:0 0 22px;
+  border-radius:26px;
+  background:linear-gradient(145deg, rgba(216,185,143,.16), rgba(184,229,214,.10));
+}
+
+
+.orb.high-risk{
+  animation:breath 4.8s ease-in-out infinite;
+  filter:saturate(.42) brightness(.78);
+}
+.scent-card{
+  margin-top:22px;
+  padding:18px 20px;
+  border-radius:26px;
+  background:linear-gradient(145deg, rgba(184,229,214,.13), rgba(216,185,143,.10));
+  border:1px solid rgba(255,255,255,.14);
+}
+.scent-card-title{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:22px;
+  margin:0 0 10px;
+}
+.scent-card-text{
+  color:rgba(245,240,231,.72);
+  line-height:1.9;
+  margin:0;
+  font-size:15px;
+}
+.path-map{
+  margin:20px 0;
+  padding:18px;
+  border-radius:28px;
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.12);
+}
+.path-row{
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:8px;
+  align-items:center;
+  margin:12px 0;
+}
+.path-node{
+  min-height:48px;
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px 12px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.13);
+  color:rgba(245,240,231,.86);
+  font-size:13px;
+  line-height:1.45;
+}
+.path-arrow{
+  color:rgba(216,185,143,.72);
+  font-size:18px;
+}
+.threshold{
+  margin-top:12px;
+  height:8px;
+  border-radius:999px;
+  background:rgba(255,255,255,.10);
+  overflow:hidden;
+}
+.threshold-bar{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, rgba(184,229,214,.78), rgba(216,185,143,.72), rgba(163,107,86,.72));
+  border-radius:999px;
+  transition:width 700ms ease;
+}
+
+
+.summary-title-main{font-family:Georgia,"Times New Roman","Noto Serif TC",serif;font-size:28px;letter-spacing:.08em;line-height:1.35;margin:0 0 20px}
+.analysis-card,.chart-card{margin:22px 0;padding:20px;border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.055));border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(22px)}
+.analysis-subtitle{display:inline-flex;padding:8px 13px;border-radius:999px;background:rgba(255,255,255,.10);color:rgba(245,240,231,.88);font-size:18px;line-height:1.4;margin:0 0 14px;font-weight:650}
+.analysis-text{color:rgba(245,240,231,.76);font-size:15px;line-height:1.9;margin:8px 0}
+.stress-chart{position:relative;height:180px;margin-top:18px;border-left:1px solid rgba(245,240,231,.25);border-bottom:1px solid rgba(245,240,231,.25);background:linear-gradient(to top,rgba(255,255,255,.06) 1px,transparent 1px) 0 0/100% 25%,linear-gradient(to right,rgba(255,255,255,.04) 1px,transparent 1px) 0 0/16.66% 100%;overflow:hidden}
+.stress-line{position:absolute;inset:0;width:100%;height:100%}
+.chart-labels{display:grid;grid-template-columns:repeat(7,1fr);margin-top:8px;color:rgba(245,240,231,.48);font-size:11px;text-align:center}
+.chart-axis{display:flex;justify-content:space-between;color:rgba(245,240,231,.45);font-size:11px;margin-top:8px}
+
+
+.hero h1,
+.panel-title,
+.prompt,
+.summary-title-main{
+  word-break:keep-all;
+  white-space:pre-wrap;
+}
+.hero h1{
+  font-size:52px;
+  line-height:1.18;
+}
+.panel-title{
+  font-size:28px;
+  line-height:1.5;
+}
+.prompt{
+  font-size:28px;
+  line-height:1.55;
+}
+.panel-text,
+.subprompt,
+.analysis-text,
+.summary-line,
+.note,
+.feedback,
+.empty{
+  line-height:2;
+  letter-spacing:.1em;
+}
+.analysis-subtitle,
+.section-subtitle{
+  font-size:18px;
+}
+.breath-count{
+  margin-top:60px;
+  margin-bottom:40px;
+}
+.choice-resource{
+  border-color:rgba(184,229,214,.52);
+  color:rgba(221,247,238,.92);
+}
+.choice-resource.selected{
+  background:linear-gradient(135deg, rgba(184,229,214,.82), rgba(184,229,214,.36));
+  box-shadow:0 0 26px rgba(184,229,214,.22), inset 0 0 0 1px rgba(184,229,214,.28);
+  color:#13211d;
+}
+.choice-load.selected{
+  background:linear-gradient(135deg, rgba(216,185,143,.72), rgba(163,107,86,.42));
+  color:#171a19;
+}
+.copyright{
+  margin:42px 0 6px;
+  color:rgba(245,240,231,.42);
+  font-size:11px;
+  line-height:1.9;
+  letter-spacing:.08em;
+}
+.chart-point-low{fill:rgba(184,229,214,.95)}
+.chart-point-mid{fill:rgba(216,185,143,.95)}
+.chart-point-high{fill:rgba(211,111,82,.95)}
+
+@media(max-width:410px){
+  .app{padding-left:16px;padding-right:16px}
+  h1{font-size:44px}
+  .orb{width:216px;height:216px}
+  .choice{font-size:14px;padding:11px 15px}
+}
+@media (prefers-reduced-motion:reduce){
+  body:before,.orb,.snow span{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="snow" aria-hidden="true">
+  <span class="near"></span><span class="mid"></span><span class="near"></span><span class="far"></span>
+  <span class="mid"></span><span class="far"></span><span class="near"></span><span class="mid"></span>
+  <span class="near"></span><span class="far"></span><span class="mid"></span><span class="far"></span>
+  <span class="near"></span><span class="mid"></span><span class="far"></span><span class="mid"></span>
+</div>
+
+<div class="app">
+  <header class="header">
+    <div class="brand">PRIVATE PSYCH MANUAL</div>
+    <div class="date">
+      <div class="month" id="monthText"></div>
+      <div class="day" id="dayText"></div>
+    </div>
+  </header>
+
+  <main id="homePage" class="page active">
+    <section class="hero">
+      <h1>今晚先把自己<br>放回身邊</h1>
+      <p>不急著整理成一份報告。只留下一點光、一點身體的訊號、一段還沒有說完的話。</p>
+    </section>
+
+    <section class="orb-wrap" aria-label="情緒光影球體">
+      <div class="orb" id="moodOrb"></div>
+      <div class="orb-note" id="homeInsight">先留下幾筆，這顆球會慢慢帶出你近期的狀態顏色。</div>
+    </section>
+
+    <section class="glass panel">
+      <p class="panel-title">今天想怎麼靠近自己</p>
+      <p class="panel-text">這裡先讓感受有一個位置，原因可以晚一點再說。</p>
+      <div class="actions">
+        <button class="lux-button primary" onclick="startDaily()">啟動覺察紀錄</button>
+        <button class="lux-button" onclick="startQuick()">隨手留下一段</button>
+      </div>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="recordPage" class="page">
+    <section class="glass panel">
+      <div class="step-mark">
+        <span id="dot1"></span><span id="dot2"></span><span id="dot3"></span><span id="dot4"></span>
+      </div>
+
+      <div id="precursorAlert" class="glass precursor-alert" style="display:none">
+        <p class="panel-title" style="font-size:21px;margin-bottom:8px;">偵測到高頻率的身體訊號連動</p>
+        <p class="panel-text" id="precursorAlertText" style="margin-bottom:12px;">你的神經系統正在重複近期出現過的過載路徑。</p>
+      </div>
+
+
+      <div id="step1">
+        <p class="prompt">今天比較靠近哪幾種狀態</p>
+        <p class="subprompt">可以選一個，也可以讓幾種狀態同時存在。</p>
+        <div class="orbit-options" id="stateOptions"></div>
+      </div>
+
+      <div id="step2" style="display:none">
+        <p class="prompt">身體哪裡先有了訊號</p>
+        <p class="subprompt">不用判斷原因，先把感覺放在這裡。</p>
+        <div class="orbit-options" id="bodyOptions"></div>
+      </div>
+
+      <div id="step3" style="display:none">
+        <p class="prompt">剛才的感受，與哪一個生活切面有關</p>
+        <p class="subprompt">輕輕標記即可，不必急著釐清細節。</p>
+        <div class="orbit-options" id="contextOptions"></div>
+      </div>
+
+      <div id="step4" style="display:none">
+        <p class="prompt">試著用幾個字，記下那個瞬間</p>
+        <p class="subprompt">不需要完整，留下一點輪廓就可以。</p>
+        <textarea id="note" placeholder="例如：隔壁的人一直抖腳，我實在很受不了，想大叫叫他停下來。"></textarea>
+        <div style="height:22px"></div>
+        <p class="prompt" style="font-size:24px">今天是否有過一點微光紀錄</p>
+        <p class="subprompt">可以很短，也可以只是一個畫面。</p>
+        <textarea id="positiveMoment" placeholder="例如：早上醒來時，房間有一點光。"></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button class="lux-button" id="backBtn" onclick="prevStep()">回到上一段</button>
+        <button class="lux-button primary" id="nextBtn" onclick="nextStep()">繼續前行</button>
+      </div>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="breathPage" class="page">
+    <section class="glass panel breath-screen">
+      <p class="panel-title">先讓身體跟上</p>
+      <div class="orb-wrap" style="min-height:270px;margin:0">
+        <div class="orb breathing" id="breathOrb"></div>
+      </div>
+      <div class="breath-label" id="breathLabel">吸氣</div>
+      <p class="panel-text">跟著球的明暗，不需要用力。</p>
+      <div class="breath-count" id="breathCount">30</div>
+      <button class="lux-button" id="skipBreathBtn" onclick="finishBreath()">略過，直接收藏</button>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="feedbackPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">這一筆已經留下</p>
+      <div class="feedback" id="feedbackText"></div>
+      <div class="scent-card" id="scentCard" style="display:none"></div>
+      <div class="nav-row">
+        <button class="lux-button" onclick="showPage('recordsPage')">看紀錄</button>
+        <button class="lux-button primary" onclick="showPage('homePage')">回到首頁</button>
+      </div>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="recordsPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">留下來的片段</p>
+      <p class="panel-text">資料目前只存在這台裝置與這個瀏覽器。</p>
+      <div id="recordsList"></div>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="summaryPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">壓力前兆路徑報告</p>
+      <p class="panel-text">這裡會把生活切面、狀態與身體訊號串成壓力路徑。</p>
+      <div id="pathReport"></div>
+      <div id="weeklySummary"></div>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+
+  <main id="settingsPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">資料與提醒</p>
+      <p class="panel-text">這個工具用來協助自我記錄與整理，不能取代心理治療、醫療診斷或緊急協助。若有立即傷害自己或他人的風險，請立刻聯絡當地緊急資源，或尋求身邊可信任的人協助。</p>
+      <p class="panel-text">目前資料只儲存在你使用的這台裝置與瀏覽器中。更換裝置、清除瀏覽器資料或使用無痕模式，可能會讓資料消失。</p>
+      <button class="lux-button" onclick="exportData()">匯出資料</button>
+      <button class="lux-button small-danger" onclick="clearData()">清除全部資料</button>
+    </section>
+  <p class="copyright">© 2026 周欣儀 諮商心理師 All Rights Reserved. 本應用程式之內容、設計邏輯與心理測量架構受著作權法保護，未經授權禁止複製或商業使用。</p>
+  </main>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button id="navHome" class="active" onclick="showPage('homePage')">首頁</button>
+    <button id="navRecords" onclick="showPage('recordsPage')">紀錄</button>
+    <button id="navSummary" onclick="showPage('summaryPage')">整理</button>
+    <button id="navSettings" onclick="showPage('settingsPage')">設定</button>
+  </div>
+</nav>
+
+<script>
+const STORAGE_KEY = "psychManualEntriesV12";
+const stateList = [
+  "一直撐著","想躲起來","心緒嘈雜","很煩","很空","有點麻木",
+  "不想說話","很想被理解","很想逃開","有點委屈","有點生氣","有點怕",
+  "提不起勁","想把事情做好","腦袋停不下來","覺得自己很糟",
+  "好像被卡住","不想再解釋","有點孤單","很想安靜",
+  "比較平靜","還可以","說不上來",
+  "感到無力","感到恐慌","心悸感","自我懷疑","過度警覺",
+  "感到不真實（解離感）","罪惡感","無助感","思緒飛揚","腦袋卡住轉不動","腦袋一片空白",
+  "意識清晰","感官敏銳","思緒流暢","注意力集中","情緒平穩","感到安全"
+];
+const bodyList = [
+  "胸口緊","肩頸硬","頭脹","胃不舒服","覺得氣吸不進去","身體很重",
+  "突然斷電的感覺","坐立難安","心跳變快","喉嚨有異物感","眼睛酸","手腳冰冷",
+  "背很緊","下巴咬緊","肚子緊","全身沒力","手心出汗","皮膚緊繃",
+  "額頭熱熱重重的","沒什麼感覺","比較放鬆","有一點力氣","說不上來",
+  "磨牙","肌肉不自覺抽動","頭暈","噁心感","全身發抖","皮膚發癢",
+  "忽冷忽熱","耳朵悶悶脹脹的","呼吸平穩","肌肉鬆動","核心穩定","身體輕盈","眼球放鬆"
+];
+const contextList = [
+  "工作","家人","伴侶","朋友","金錢","健康","睡眠","社群媒體",
+  "自我要求","未來","回憶","人際訊息","時間壓力","身體不舒服",
+  "突來的安靜","沒有特定事件",
+  "課業壓力","環境改變","突發事件","法律問題","政治或社會事件"
+];
+
+const resourceWords = [
+  "比較平靜","還可以","意識清晰","感官敏銳","思緒流暢","注意力集中",
+  "情緒平穩","感到安全","呼吸平穩","肌肉鬆動","核心穩定",
+  "身體輕盈","眼球放鬆","比較放鬆","有一點力氣"
+];
+
+const loadWords = [
+  "一直撐著","想躲起來","心緒嘈雜","很煩","很空","有點麻木",
+  "不想說話","很想逃開","有點委屈","有點生氣","有點怕",
+  "提不起勁","腦袋停不下來","覺得自己很糟","好像被卡住",
+  "感到無力","感到恐慌","心悸感","自我懷疑","過度警覺",
+  "感到不真實（解離感）","罪惡感","無助感","思緒飛揚",
+  "腦袋卡住轉不動","腦袋一片空白",
+  "胸口緊","肩頸硬","頭脹","胃不舒服","覺得氣吸不進去","身體很重",
+  "突然斷電的感覺","坐立難安","心跳變快","喉嚨有異物感","眼睛酸",
+  "手腳冰冷","背很緊","下巴咬緊","肚子緊","全身沒力","手心出汗",
+  "皮膚緊繃","額頭熱熱重重的","磨牙","肌肉不自覺抽動","頭暈",
+  "噁心感","全身發抖","皮膚發癢","忽冷忽熱","耳朵悶悶脹脹的"
+];
+
+function optionToneClass(item){
+  if(resourceWords.includes(item)) return " choice-resource";
+  if(loadWords.includes(item)) return " choice-load";
+  return "";
+}
+
+let currentStep = 1;
+let currentType = "daily";
+let draft = { states:[], bodySignals:[], contexts:[] };
+let pendingEntry = null;
+let breathTimer = null;
+let breathSeconds = 30;
+let currentRiskLevel = "low";
+let currentStressScore = 0;
+let currentStressPath = null;
+let breathPhaseTimer = null;
+
+function initDate(){
+  const d = new Date();
+  document.getElementById("monthText").textContent = String(d.getMonth()+1).padStart(2,"0") + "月";
+  document.getElementById("dayText").textContent = String(d.getDate()).padStart(2,"0");
+}
+function getEntries(){
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+}
+function setEntries(entries){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+}
+function renderOptions(id, list, key){
+  const wrap = document.getElementById(id);
+  wrap.innerHTML = "";
+  list.forEach(item => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "choice" + optionToneClass(item);
+    btn.textContent = item;
+    btn.onclick = () => {
+      const arr = draft[key];
+      const index = arr.indexOf(item);
+      if(index >= 0){
+        arr.splice(index,1);
+        btn.classList.remove("selected");
+      }else{
+        arr.push(item);
+        btn.classList.add("selected");
+      }
+      updateOrbByState(draft.states, "moodOrb");
+    };
+    wrap.appendChild(btn);
+  });
+}
+
+
+
+const essentialOilLibrary = [
+{name:"乳香",min:0,note:"樹脂調能提供清楚的感官邊界，適合在紀錄後協助注意力回到呼吸與身體。"},
+{name:"苦橙葉",min:0,note:"綠葉與柑橘交界的氣味，適合在緊繃之後建立較平緩的轉場。"},
+{name:"薰衣草",min:65,note:"含乙酸芳樟酯調性的氣味常被用於放慢警戒節奏。"},
+{name:"佛手柑",min:55,note:"明亮但不尖銳的柑橘調，適合在焦躁與胸口緊繃時協助轉換注意力。"},
+{name:"岩蘭草",min:70,note:"根部與土壤感明顯，適合在飄浮、空掉或不真實感較強時協助重新定位身體。"},
+{name:"雪松",min:45,note:"乾淨木質調能提供穩定邊界，適合在過度思考後作為低刺激的嗅覺支點。"},
+{name:"甜橙",min:0,note:"柔和柑橘氣味適合低負荷時使用，讓紀錄結束後有較輕的轉場。"},
+{name:"檀香",min:60,note:"低沉木質調適合在身體沉重或思緒過度擴散時使用。"},
+{name:"洋甘菊",min:50,note:"氣味柔軟，適合在委屈、緊繃或睡前狀態中作為緩衝。"},
+{name:"馬鬱蘭",min:60,note:"溫暖草本調適合在肌肉緊繃、下巴咬緊或肩頸硬時使用。"},
+{name:"依蘭",min:65,note:"濃郁花香適合少量使用，幫助從高張力狀態轉入較慢的節奏。"},
+{name:"橙花",min:55,note:"清透花香適合在不安與自我懷疑時作為細緻的安定線索。"},
+{name:"玫瑰草",min:40,note:"柔和草本帶花香，適合作為中低負荷時的身體覺察入口。"},
+{name:"廣藿香",min:60,note:"厚實土壤調適合在不真實感或身體邊界模糊時使用。"},
+{name:"快樂鼠尾草",min:55,note:"草本與微甜氣味能提供較放鬆的節奏，適合壓力後段使用。"},
+{name:"羅馬洋甘菊",min:45,note:"低刺激花草調，適合在想退開、需要安靜時使用。"},
+{name:"黑雲杉",min:60,note:"森林調適合在疲憊、全身沒力或呼吸不順時建立清晰感。"},
+{name:"絲柏",min:45,note:"清瘦木質調能協助把分散的注意力收回來。"},
+{name:"杜松漿果",min:50,note:"乾淨微苦的氣味適合在沉重與停滯感中使用。"},
+{name:"迷迭香",min:35,note:"清醒草本調適合低到中等負荷時使用，過度警覺時建議少量。"},
+{name:"薄荷",min:30,note:"冷感明顯，適合短暫提高清醒度。"},
+{name:"尤加利",min:35,note:"清透葉片調適合在呼吸感受模糊時作為短暫感官標記。"},
+{name:"茶樹",min:25,note:"乾淨銳利的氣味適合低負荷整理環境時使用。"},
+{name:"檸檬",min:20,note:"清亮柑橘調適合白天低負荷時使用，提供一點明確感。"},
+{name:"葡萄柚",min:25,note:"微苦柑橘氣味適合在疲憊與低動力時作為轉場。"},
+{name:"萊姆",min:20,note:"清酸調適合短暫喚醒注意力。"},
+{name:"苦橙",min:35,note:"比甜橙更沉一些，適合在煩躁與疲憊交錯時使用。"},
+{name:"橙葉",min:35,note:"綠葉與木質感兼具，適合在緊繃後回到較穩的呼吸。"},
+{name:"松針",min:40,note:"森林感明顯，適合作為胸口緊與疲憊時的環境提示。"},
+{name:"冷杉",min:40,note:"乾淨木質葉片調，適合在壓力後段恢復清晰感。"},
+{name:"白玉蘭葉",min:45,note:"柔和葉片與花香調，適合在需要安靜但不想太沉重時使用。"},
+{name:"月桂",min:35,note:"帶有清晰感的草本調，適合用於短時間整理思緒。"},
+{name:"百里香",min:30,note:"氣味較強，適合少量使用於低負荷清醒時段。"},
+{name:"羅勒",min:35,note:"清楚草本調適合在腦袋混亂時作為短暫定位。"},
+{name:"香蜂草",min:40,note:"柔和草本調，適合在緊張與低落交界時使用。"},
+{name:"天竺葵",min:40,note:"花草調平衡感明顯，適合在情緒波動時作為中性氣味。"},
+{name:"玫瑰",min:55,note:"細緻花香適合在委屈、孤單與自我懷疑時作為溫和標記。"},
+{name:"茉莉",min:50,note:"濃郁花香適合少量使用，協助從麻木感中拉回感官。"},
+{name:"岩玫瑰",min:55,note:"樹脂與皮革感適合在身體邊界鬆散時使用。"},
+{name:"沒藥",min:60,note:"厚實樹脂調適合在情緒沉重時作為較深的安定線索。"},
+{name:"安息香",min:45,note:"溫暖香草樹脂調適合在疲憊與需要緩衝時使用。"},
+{name:"欖香脂",min:40,note:"清亮樹脂調適合在思緒卡住時作為轉換點。"},
+{name:"胡蘿蔔籽",min:35,note:"土壤與種子氣味明顯，適合在需要重新落地時使用。"},
+{name:"芫荽籽",min:35,note:"柔和辛香調適合在低動力與身體沉重時使用。"},
+{name:"小豆蔻",min:35,note:"溫和辛香有助於建立胸腔與呼吸的存在感。"},
+{name:"薑",min:45,note:"溫熱辛香適合在手腳冰冷與身體很重時少量使用。"},
+{name:"黑胡椒",min:45,note:"辛香明確，適合在無力與停滯感中短暫喚醒身體。"},
+{name:"肉桂葉",min:45,note:"溫熱感強，適合少量使用。"},
+{name:"丁香",min:45,note:"氣味強烈，適合作為短暫中斷點，不適合長時間擴香。"},
+{name:"香根草",min:65,note:"根部氣味深，適合在過度警覺或身體發抖後作為落地感。"},
+{name:"檜木",min:45,note:"清爽木質調能讓空間感變得清楚。"},
+{name:"扁柏",min:45,note:"木質與森林調適合在煩躁後建立安靜的外框。"},
+{name:"芳樟",min:45,note:"帶有芳樟醇調性的木質氣味，適合作為高張力後的平緩線索。"},
+{name:"綠花白千層",min:35,note:"清潔感明顯，適合在頭脹與環境壓力後短暫使用。"},
+{name:"永久花",min:50,note:"草本與蜂蜜感交錯，適合在沉重與委屈後保留一點柔軟。"},
+{name:"纈草",min:70,note:"根部氣味深重，適合少量使用於高負荷後的夜間轉場。"},
+{name:"穗甘松",min:60,note:"土壤與草本感明顯，適合在神經系統難以降速時使用。"},
+{name:"香桃木",min:35,note:"柔和葉片調適合在呼吸卡住時提供清爽感。"},
+{name:"藍艾菊",min:65,note:"草本氣味帶冷感，適合高張力與皮膚緊繃時作為低量嗅覺錨點。"},
+{name:"柚木",min:45,note:"乾燥木質調適合在自我要求過高後建立穩定感。"}
+];
+
+function calcStressIndex(entry, entries){
+  let score = 0;
+  const contexts = entry.contexts || [];
+  const states = entry.states || [];
+  const bodies = entry.bodySignals || [];
+
+  const highContexts = {
+    "時間壓力":18,"工作":14,"課業壓力":14,"法律問題":18,"突發事件":17,
+    "環境改變":12,"人際訊息":12,"政治或社會事件":12,"自我要求":13,
+    "金錢":12,"健康":11,"睡眠":10
+  };
+  const stateWeights = {
+    "感到恐慌":22,"過度警覺":20,"心緒嘈雜":17,"腦袋停不下來":18,
+    "腦袋卡住轉不動":20,"感到不真實（解離感）":22,"腦袋一片空白":18,
+    "感到無力":16,"無助感":17,"罪惡感":13,"自我懷疑":13,
+    "覺得自己很糟":16,"思緒飛揚":15,"好像被卡住":14
+  };
+  const bodyWeights = {
+    "額頭熱熱重重的":20,"覺得氣吸不進去":22,"胸口緊":19,"心跳變快":20,
+    "下巴咬緊":17,"磨牙":18,"肩頸硬":14,"全身發抖":22,
+    "忽冷忽熱":18,"手心出汗":15,"喉嚨有異物感":16,
+    "耳朵悶悶脹脹的":13,"肌肉不自覺抽動":18,"頭暈":15,"噁心感":15,
+    "突然斷電的感覺":16,"皮膚緊繃":13
+  };
+
+  contexts.forEach(x => score += highContexts[x] || 4);
+  states.forEach(x => score += stateWeights[x] || (loadWords.includes(x) ? 8 : 0));
+  bodies.forEach(x => score += bodyWeights[x] || (loadWords.includes(x) ? 7 : 0));
+  states.forEach(x => { if(resourceWords.includes(x)) score -= 8; });
+  bodies.forEach(x => { if(resourceWords.includes(x)) score -= 7; });
+
+  const recent = entries.filter(e => withinHours(e.date, 72));
+  recent.forEach(e => {
+    if(overlapScore(contexts, e.contexts || []) > 0 && overlapScore(bodies, e.bodySignals || []) > 0) score += 8;
+    if(overlapScore(contexts, e.contexts || []) > 0 && overlapScore(states, e.states || []) > 0 && overlapScore(bodies, e.bodySignals || []) > 0) score += 10;
+  });
+
+  if(contexts.includes("時間壓力") && bodies.includes("額頭熱熱重重的") && (states.includes("腦袋卡住轉不動") || states.includes("腦袋一片空白"))) score += 24;
+  if(contexts.includes("環境改變") && bodies.includes("肩頸硬") && states.includes("腦袋停不下來")) score += 22;
+  if(contexts.includes("工作") && bodies.includes("覺得氣吸不進去") && states.includes("心緒嘈雜")) score += 22;
+
+  return Math.max(0, Math.min(100, Math.round(score)));
+}
+function pickScentByStress(index, entry){
+  const pool = essentialOilLibrary.filter(o => index >= o.min);
+  const selectedPool = pool.length ? pool : essentialOilLibrary;
+  const seed = (entry.id || String(Date.now())).split("").reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  return selectedPool[seed % selectedPool.length];
+}
+
+function withinHours(iso, hours){
+  return Date.now() - new Date(iso).getTime() <= hours * 60 * 60 * 1000;
+}
+
+function overlapScore(a, b){
+  if(!a || !b || !a.length || !b.length) return 0;
+  const setB = new Set(b);
+  const hit = a.filter(x => setB.has(x)).length;
+  return hit / Math.max(a.length, b.length);
+}
+
+function calculateStressThreshold(entry, entries){
+  const recent72 = entries.filter(e => withinHours(e.date, 72));
+  let comboMatches = 0;
+  let pathMatches = 0;
+
+  recent72.forEach(e => {
+    const contextOverlap = overlapScore(entry.contexts || [], e.contexts || []);
+    const bodyOverlap = overlapScore(entry.bodySignals || [], e.bodySignals || []);
+    const stateOverlap = overlapScore(entry.states || [], e.states || []);
+    if(contextOverlap > 0 && bodyOverlap > 0) comboMatches += 1;
+    if(contextOverlap > 0 && bodyOverlap > 0 && stateOverlap > 0) pathMatches += 1;
+  });
+
+  const leadingBodySignals = [
+    "下巴咬緊","磨牙","胸口緊","覺得氣吸不進去","心跳變快",
+    "手心出汗","肌肉不自覺抽動","全身發抖","忽冷忽熱","肩頸硬"
+  ];
+  const highLoadStates = [
+    "心緒嘈雜","腦袋停不下來","過度警覺","感到恐慌",
+    "思緒飛揚","腦袋一片空白","感到不真實（解離感）","感到無力"
+  ];
+
+  const leadingBodyCount = (entry.bodySignals || []).filter(x => leadingBodySignals.includes(x)).length;
+  const highStateCount = (entry.states || []).filter(x => highLoadStates.includes(x)).length;
+
+  let score = 0;
+  const stressIndex = calcStressIndex(entry, entries);
+  score += Math.min(comboMatches / 3, 1) * 0.35;
+  score += Math.min(pathMatches / 2, 1) * 0.30;
+  score += Math.min(leadingBodyCount / 2, 1) * 0.20;
+  score += Math.min(highStateCount / 2, 1) * 0.15;
+  score = Math.max(score, stressIndex / 100);
+
+  const topContext = mostCommonInEntries([...recent72, entry], "contexts");
+  const topState = mostCommonInEntries([...recent72, entry], "states");
+  const topBody = mostCommonInEntries([...recent72, entry], "bodySignals");
+
+  const path = {
+    context: topContext || (entry.contexts && entry.contexts[0]) || "尚不明顯",
+    state: topState || (entry.states && entry.states[0]) || "尚不明顯",
+    body: topBody || (entry.bodySignals && entry.bodySignals[0]) || "尚不明顯",
+    comboMatches,
+    pathMatches
+  };
+
+  let level = "low";
+  if(stressIndex >= 80 || score >= 0.78 || pathMatches >= 2) level = "high";
+  else if(score >= 0.60 || comboMatches >= 3) level = "medium";
+
+  return { score, level, path, stressIndex };
+}
+
+function mostCommonInEntries(entries, key){
+  const counts = {};
+  entries.forEach(e => (e[key] || []).forEach(item => counts[item] = (counts[item] || 0) + 1));
+  const sorted = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  return sorted[0] ? sorted[0][0] : "";
+}
+
+function checkPrecursor(){
+  const alertBox = document.getElementById("precursorAlert");
+  const textBox = document.getElementById("precursorAlertText");
+  if(!alertBox || !textBox) return;
+
+  const tempEntry = {
+    states: draft.states,
+    bodySignals: draft.bodySignals,
+    contexts: draft.contexts,
+    date: new Date().toISOString()
+  };
+  const risk = calculateStressThreshold(tempEntry, getEntries());
+
+  if(risk.score >= 0.60){
+    const percent = risk.stressIndex || Math.round(risk.score * 100);
+    textBox.textContent = "偵測到高頻率的身體訊號連動。你的神經系統正在重複近期出現過的過載路徑，目前符合度約 " + percent + "%。";
+    alertBox.style.display = "block";
+    const orb = document.getElementById("moodOrb");
+    if(orb){
+      orb.classList.add("high-risk");
+      orb.style.setProperty("--orb1", "rgba(91,106,116,.62)");
+      orb.style.setProperty("--orb2", "rgba(60,70,76,.70)");
+      orb.style.setProperty("--orb3", "rgba(28,31,34,.82)");
+    }
+  }else{
+    alertBox.style.display = "none";
+  }
+}
+
+function startDaily(){
+  currentType = "daily";
+  resetDraft();
+  showPage("recordPage");
+}
+function startQuick(){
+  currentType = "quick";
+  resetDraft();
+  showPage("recordPage");
+}
+function resetDraft(){
+  currentStep = 1;
+  draft = { states:[], bodySignals:[], contexts:[] };
+  document.getElementById("note").value = "";
+  document.getElementById("positiveMoment").value = "";
+  renderOptions("stateOptions", stateList, "states");
+  renderOptions("bodyOptions", bodyList, "bodySignals");
+  renderOptions("contextOptions", contextList, "contexts");
+  updateStep();
+}
+function updateStep(){
+  for(let i=1;i<=4;i++){
+    document.getElementById("step"+i).style.display = i === currentStep ? "block" : "none";
+    document.getElementById("dot"+i).classList.toggle("active", i <= currentStep);
+  }
+  document.getElementById("backBtn").style.visibility = currentStep === 1 ? "hidden" : "visible";
+  document.getElementById("nextBtn").textContent = currentStep === 4 ? "收錄此刻" : "繼續前行";
+}
+function nextStep(){
+  if(currentStep < 4){
+    currentStep++;
+    updateStep();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }else{
+    prepareEntryAndBreath();
+  }
+}
+function prevStep(){
+  if(currentStep > 1){
+    currentStep--;
+    updateStep();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+}
+function prepareEntryAndBreath(){
+  const tempEntry = {
+    id: "entry_" + Date.now(),
+    date: new Date().toISOString(),
+    type: currentType,
+    states: draft.states,
+    bodySignals: draft.bodySignals,
+    contexts: draft.contexts,
+    note: document.getElementById("note").value.trim(),
+    positiveMoment: document.getElementById("positiveMoment").value.trim(),
+    createdAt: new Date().toISOString()
+  };
+
+  const risk = calculateStressThreshold(tempEntry, getEntries());
+  currentRiskLevel = risk.level;
+  currentStressScore = risk.score;
+  currentStressPath = risk.path;
+
+  tempEntry.stressScore = risk.score;
+  tempEntry.neuralLoadIndex = risk.stressIndex;
+  tempEntry.riskLevel = risk.level;
+  tempEntry.precursorPath = risk.path;
+  tempEntry.feedback = makeFeedback(tempEntry.states, tempEntry.bodySignals, risk);
+
+  pendingEntry = tempEntry;
+  showPage("breathPage");
+  startBreath();
+}
+function startBreath(){
+  clearInterval(breathTimer);
+  clearInterval(breathPhaseTimer);
+  breathSeconds = currentRiskLevel === "high" ? 60 : 30;
+  document.getElementById("breathCount").textContent = breathSeconds;
+  const skipBtn = document.getElementById("skipBreathBtn");
+  if(skipBtn) skipBtn.style.display = currentRiskLevel === "high" ? "none" : "inline-block";
+  updateOrbByState(pendingEntry.states || [], "breathOrb");
+  const breathOrb = document.getElementById("breathOrb");
+  if(currentRiskLevel === "high"){
+    breathOrb.classList.add("high-risk");
+  }else{
+    breathOrb.classList.remove("high-risk");
+  }
+  let phase = 0;
+  const labels = ["吸氣","吐氣"];
+  document.getElementById("breathLabel").textContent = labels[0];
+  breathPhaseTimer = setInterval(() => {
+    phase = phase === 0 ? 1 : 0;
+    document.getElementById("breathLabel").textContent = labels[phase];
+  }, 5000);
+  breathTimer = setInterval(() => {
+    breathSeconds -= 1;
+    document.getElementById("breathCount").textContent = breathSeconds;
+    if(breathSeconds <= 0){
+      finishBreath();
+    }
+  }, 1000);
+}
+function finishBreath(){
+  clearInterval(breathTimer);
+  clearInterval(breathPhaseTimer);
+  if(!pendingEntry) return;
+  const entries = getEntries();
+  entries.push(pendingEntry);
+  setEntries(entries);
+  document.getElementById("feedbackText").textContent = pendingEntry.feedback;
+  renderScentCard(pendingEntry);
+  pendingEntry = null;
+  showPage("feedbackPage");
+}
+
+function renderScentCard(entry){
+  const card = document.getElementById("scentCard");
+  if(!card) return;
+  const index = entry.neuralLoadIndex || Math.round((entry.stressScore || 0) * 100);
+  const oil = pickScentByStress(index, entry);
+  card.style.display = "block";
+  card.innerHTML = `<p class="scent-card-title">氣味錨點：${oil.name}</p><p class="scent-card-text">目前神經負荷指數約 ${index}。${oil.note}</p>`;
+}
+
+function makeFeedback(states, bodySignals, risk){
+  const s = states.join(" ");
+  const b = bodySignals.join(" ");
+  if(risk && risk.level === "high"){
+    return "偵測到神經系統已接近負荷上限，建議現在收錄紀錄，並進入 60 秒的調節模式。這一筆顯示出生活切面、身體訊號與狀態之間的高密度連動。";
+  }
+  if(risk && risk.level === "medium"){
+    return "偵測到高頻率的身體訊號連動。你的神經系統正在重複近期出現過的過載路徑，這一筆值得被標記為前兆。";
+  }
+  if(s.includes("一直撐著")){
+    return "今天有一部分的你，花了不少力氣讓事情維持在表面正常。這一筆先留在這裡，讓它不用立刻被解釋。";
+  }
+  if(s.includes("想躲起來") || s.includes("很想逃開")){
+    return "想離遠一點的感覺先被記下來。它可能是一種過滿，也可能是你暫時替自己留下的距離。";
+  }
+  if(s.includes("很空") || s.includes("有點麻木")){
+    return "空掉或麻木的地方，不一定需要立刻被說明。這一筆先留下來，讓空白也有位置。";
+  }
+  if(s.includes("心緒嘈雜") || s.includes("腦袋停不下來") || s.includes("思緒飛揚")){
+    return "裡面同時有太多聲音時，先記下一小段，就已經是在替自己留位置。";
+  }
+  if(s.includes("覺察度提升") || s.includes("比較平靜")){
+    return "這一點比較鬆動的片段值得被保存。之後回看時，它可能會成為一個線索。";
+  }
+  if(b.includes("胸口緊") || b.includes("覺得氣吸不進去")){
+    return "身體已經先留下訊號。語言還沒跟上也沒有關係，今天先把它放在這裡。";
+  }
+  return "這一筆可以先留著，不需要急著把它整理成答案。";
+}
+function showPage(pageId){
+  ["homePage","recordPage","breathPage","feedbackPage","recordsPage","summaryPage","settingsPage"].forEach(id=>{
+    document.getElementById(id).classList.toggle("active", id === pageId);
+  });
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  if(pageId==="homePage") document.getElementById("navHome").classList.add("active");
+  if(pageId==="recordsPage") document.getElementById("navRecords").classList.add("active");
+  if(pageId==="summaryPage") document.getElementById("navSummary").classList.add("active");
+  if(pageId==="settingsPage") document.getElementById("navSettings").classList.add("active");
+  if(pageId!=="breathPage"){
+    clearInterval(breathTimer);
+    clearInterval(breathPhaseTimer);
+  }
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+function updateOrbByState(states, id){
+  const orb = document.getElementById(id);
+  if(!orb) return;
+  const s = states.join(" ");
+  let c1="rgba(184,229,214,.88)", c2="rgba(216,185,143,.62)", c3="rgba(163,107,86,.42)", glow="rgba(184,229,214,.16)";
+  if(s.includes("心緒嘈雜") || s.includes("腦袋停不下來") || s.includes("思緒飛揚") || s.includes("很煩")){
+    c1="rgba(216,185,143,.80)"; c2="rgba(163,107,86,.58)"; c3="rgba(183,177,217,.44)"; glow="rgba(216,185,143,.18)";
+  }else if(s.includes("很空") || s.includes("有點麻木") || s.includes("腦袋一片空白") || s.includes("感到不真實（解離感）") || s.includes("提不起勁")){
+    c1="rgba(143,164,168,.58)"; c2="rgba(184,229,214,.32)"; c3="rgba(255,255,255,.18)"; glow="rgba(143,164,168,.14)";
+  }else if(s.includes("比較平靜") || s.includes("還可以")){
+    c1="rgba(184,229,214,.95)"; c2="rgba(210,222,202,.64)"; c3="rgba(216,185,143,.34)"; glow="rgba(184,229,214,.24)";
+  }else if(s.includes("一直撐著") || s.includes("想把事情做好")){
+    c1="rgba(120,184,164,.58)"; c2="rgba(216,185,143,.50)"; c3="rgba(103,112,102,.38)"; glow="rgba(120,184,164,.16)";
+  }
+  orb.style.setProperty("--orb1", c1);
+  orb.style.setProperty("--orb2", c2);
+  orb.style.setProperty("--orb3", c3);
+  orb.style.boxShadow = `inset 22px 24px 54px rgba(255,255,255,.18), inset -26px -32px 66px rgba(24,27,26,.22), 0 28px 90px ${glow}, 0 36px 110px rgba(0,0,0,.34)`;
+}
+function formatDate(iso){
+  const d = new Date(iso);
+  return d.toLocaleString("zh-TW", { month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+}
+function renderRecords(){
+  const entries = getEntries().slice().reverse();
+  const wrap = document.getElementById("recordsList");
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">目前還沒有紀錄。</div>';
+    return;
+  }
+  wrap.innerHTML = entries.map(e=>`
+    <div class="record">
+      <div class="record-time">${formatDate(e.date)}</div>
+      <div class="pills">
+        ${(e.states||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+        ${(e.bodySignals||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+      </div>
+      ${e.contexts && e.contexts.length ? `<div class="note" style="color:rgba(245,240,231,.62)">${e.contexts.map(escapeHtml).join("、")}</div>` : ""}
+      ${e.note ? `<div class="note">${escapeHtml(e.note)}</div>` : ""}
+      ${e.positiveMoment ? `<div class="note">微光紀錄：${escapeHtml(e.positiveMoment)}</div>` : ""}
+      <div class="note" style="color:rgba(245,240,231,.62)">${escapeHtml(e.feedback || "")}</div>
+      <button class="lux-button small-danger" onclick="deleteEntry('${e.id}')">刪除這一筆</button>
+    </div>
+  `).join("");
+}
+function deleteEntry(id){
+  if(!confirm("確定要刪除這一筆紀錄嗎？")) return;
+  setEntries(getEntries().filter(e=>e.id!==id));
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+function recentEntries(days){
+  const now = Date.now();
+  return getEntries().filter(e => now - new Date(e.date).getTime() <= days*24*60*60*1000);
+}
+function countItems(entries, key){
+  const counts = {};
+  entries.forEach(e => (e[key]||[]).forEach(item => counts[item] = (counts[item]||0)+1));
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+}
+
+
+function getDailyStressSeries(entries){
+  const days = [];
+  const now = new Date();
+  for(let i=6;i>=0;i--){
+    const d = new Date(now);
+    d.setDate(now.getDate() - i);
+    const key = d.toISOString().slice(0,10);
+    const dayEntries = entries.filter(e => (e.date || "").slice(0,10) === key);
+    let value = 0;
+    if(dayEntries.length){
+      value = Math.round(dayEntries.reduce((sum,e)=>sum + (e.neuralLoadIndex || calcStressIndex(e, entries)), 0) / dayEntries.length);
+    }
+    days.push({key, label:String(d.getMonth()+1)+"/"+String(d.getDate()), value});
+  }
+  return days;
+}
+function renderStressCurve(entries){
+  const series = getDailyStressSeries(entries);
+  const coords = series.map((d,i)=>({x:8 + i * 14, y:92 - (d.value * 0.84), value:d.value}));
+  const segments = coords.slice(1).map((p,i)=>{
+    const prev = coords[i];
+    const avg = (prev.value + p.value) / 2;
+    const color = avg >= 80 ? "rgba(211,111,82,.95)" : avg >= 55 ? "rgba(216,185,143,.95)" : "rgba(184,229,214,.92)";
+    return `<line x1="${prev.x}" y1="${prev.y}" x2="${p.x}" y2="${p.y}" stroke="${color}" stroke-width="2.4" vector-effect="non-scaling-stroke"></line>`;
+  }).join("");
+  const dots = coords.map(p=>{
+    const cls = p.value >= 80 ? "chart-point-high" : p.value >= 55 ? "chart-point-mid" : "chart-point-low";
+    return `<circle class="${cls}" cx="${p.x}" cy="${p.y}" r="3"></circle>`;
+  }).join("");
+  return `<div class="chart-card"><p class="analysis-subtitle">七日壓力負荷曲線</p><p class="analysis-text">縱軸為神經負荷指數，橫軸為日期。折線保留轉折，方便看見哪一天的負荷陡升。</p><div class="stress-chart"><svg class="stress-line" viewBox="0 0 100 100" preserveAspectRatio="none">${segments}${dots}</svg></div><div class="chart-labels">${series.map(d=>`<span>${d.label}</span>`).join("")}</div><div class="chart-axis"><span>低</span><span>高</span></div></div>`;
+}
+
+function renderPathReport(entries){
+  const report = document.getElementById("pathReport");
+  if(!report) return;
+  if(!entries.length){
+    report.innerHTML = "";
+    return;
+  }
+  const contexts = countItems(entries,"contexts");
+  const states = countItems(entries,"states");
+  const bodies = countItems(entries,"bodySignals");
+  const c = contexts[0] ? contexts[0][0] : "生活切面";
+  const s = states[0] ? states[0][0] : "狀態";
+  const b = bodies[0] ? bodies[0][0] : "身體訊號";
+  report.innerHTML = `
+    <div class="path-map">
+      <div class="path-row">
+        <div class="path-node">${escapeHtml(c)}</div>
+        <div class="path-arrow">→</div>
+        <div class="path-node">${escapeHtml(s)}</div>
+        <div class="path-arrow">→</div>
+        <div class="path-node">${escapeHtml(b)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderSummary(){
+  const entries = recentEntries(7);
+  const wrap = document.getElementById("weeklySummary");
+  renderPathReport(entries);
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">最近七天還沒有紀錄。先累積幾筆，這裡會開始辨識重複路徑。</div>';
+    return;
+  }
+  const states = countItems(entries,"states").slice(0,5);
+  const bodies = countItems(entries,"bodySignals").slice(0,5);
+  const contexts = countItems(entries,"contexts").slice(0,5);
+  const positives = entries.map(e=>e.positiveMoment).filter(Boolean).slice(-3);
+  const risk = calculateStressThreshold({
+    states: states.map(x=>x[0]).slice(0,3),
+    bodySignals: bodies.map(x=>x[0]).slice(0,3),
+    contexts: contexts.map(x=>x[0]).slice(0,3),
+    date: new Date().toISOString()
+  }, entries);
+  const percent = risk.stressIndex || Math.round(risk.score * 100);
+  wrap.innerHTML = `
+    <p class="summary-title-main">壓力前兆報告</p>
+    ${renderStressCurve(entries)}
+    <div class="analysis-card">
+      <p class="analysis-subtitle">路徑預測</p>
+      <p class="analysis-text">最近七天共留下 ${entries.length} 筆紀錄。</p>
+      <p class="analysis-text">主要生活切面：${contexts.length ? contexts.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</p>
+      <p class="analysis-text">主要狀態反應：${states.length ? states.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</p>
+      <p class="analysis-text">主要身體訊號：${bodies.length ? bodies.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</p>
+      <p class="analysis-text">前兆判讀：${makePathInsight(contexts,states,bodies)}</p><p class="analysis-text">身體領先訊號：${makeAntecedentInsight(entries)}</p>
+    </div>
+    <div class="analysis-card">
+      <p class="analysis-subtitle">微光紀錄</p>
+      <p class="analysis-text">${positives.length ? positives.map(escapeHtml).join("；") : "這週還沒有特別留下。"}</p>
+    </div>
+    <div class="analysis-card">
+      <p class="analysis-subtitle">氣味小卡</p>
+      <p class="analysis-text">${pickScentByStress(percent, {id:"summary"+Date.now()}).name}：可作為本週整理後的感官中斷點。使用時保持低濃度，讓氣味成為回到身體的線索。</p>
+    </div>
+  `;
+}
+function renderLightMap(entries){
+  const map = document.getElementById("lightMap");
+  if(!map) return;
+  if(!entries.length){
+    map.innerHTML = "";
+    return;
+  }
+  const positions = [[18,28],[72,22],[44,42],[24,66],[80,62],[55,78],[36,18],[64,48],[12,82],[88,36]];
+  map.innerHTML = entries.slice(-10).map((e,i)=>{
+    const p = positions[i % positions.length];
+    const color = colorForState((e.states||[]).join(" "));
+    return `<span class="light-dot" style="left:${p[0]}%;top:${p[1]}%;background:${color};box-shadow:0 0 28px ${color};"></span>`;
+  }).join("");
+}
+function colorForState(s){
+  if(s.includes("心緒嘈雜") || s.includes("腦袋停不下來") || s.includes("思緒飛揚") || s.includes("很煩")) return "rgba(216,185,143,.88)";
+  if(s.includes("很空") || s.includes("有點麻木") || s.includes("腦袋一片空白") || s.includes("感到不真實（解離感）") || s.includes("提不起勁")) return "rgba(143,164,168,.82)";
+  if(s.includes("比較平靜") || s.includes("還可以")) return "rgba(184,229,214,.95)";
+  if(s.includes("一直撐著") || s.includes("想把事情做好")) return "rgba(120,184,164,.82)";
+  return "rgba(244,239,230,.72)";
+}
+
+
+function makeAntecedentInsight(entries){
+  const sorted = entries.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  let bodyBeforeStateCount = 0;
+  for(let i=1;i<sorted.length;i++){
+    const prevBodies = sorted[i-1].bodySignals || [];
+    const currentStates = sorted[i].states || [];
+    const loadBody = prevBodies.some(x => loadWords.includes(x));
+    const loadState = currentStates.some(x => loadWords.includes(x));
+    if(loadBody && loadState) bodyBeforeStateCount += 1;
+  }
+  if(bodyBeforeStateCount >= 2){
+    return "身體訊號已連續兩次早於情緒狀態出現。這可能是你的壓力上升前兆，建議把身體變化放在情緒判讀之前觀察。";
+  }
+  return "目前尚未形成穩定的身體領先訊號。後續紀錄會繼續比對身體與狀態的先後順序。";
+}
+
+function makePathInsight(contexts, states, bodies){
+  const c = contexts[0] ? contexts[0][0] : "";
+  const s1 = states[0] ? states[0][0] : "";
+  const s2 = states[1] ? states[1][0] : "";
+  const b1 = bodies[0] ? bodies[0][0] : "";
+  const b2 = bodies[1] ? bodies[1][0] : "";
+  if(c && s1 && b1){
+    const statePath = s2 ? `${s1} → ${s2}` : s1;
+    const bodyPath = b2 ? `${b1} → ${b2}` : b1;
+    return `當「${c}」出現時，近期較常連到「${statePath}」，身體接著留下「${bodyPath}」。這可能是你的壓力前兆路徑。`;
+  }
+  return "目前資料還不夠形成路徑。再多幾筆後，這裡會開始辨識重複組合。";
+}
+
+function makeInsight(states,bodies){
+  const repeatedState = states.find(x=>x[1]>=3);
+  const repeatedBody = bodies.find(x=>x[1]>=3);
+  if(repeatedState && repeatedBody){
+    return `「${repeatedState[0]}」和「${repeatedBody[0]}」最近比較常一起出現。它們可能是你近期的壓力線索。`;
+  }
+  if(repeatedState){
+    return `「${repeatedState[0]}」最近出現得比較頻繁。先不用處理，先看見它。`;
+  }
+  if(repeatedBody){
+    return `「${repeatedBody[0]}」最近出現得比較頻繁。身體可能正在留下訊號。`;
+  }
+  return "目前還看不出穩定模式，可以再多累積幾筆。";
+}
+function renderHomeInsight(){
+  const entries = recentEntries(7);
+  const el = document.getElementById("homeInsight");
+  if(!entries.length){
+    el.textContent = "先留下幾筆，這顆球會慢慢帶出你近期的狀態顏色。";
+    updateOrbByState([], "moodOrb");
+    return;
+  }
+  const states = countItems(entries,"states");
+  const bodies = countItems(entries,"bodySignals");
+  el.textContent = makeInsight(states,bodies);
+  const risk = calculateStressThreshold({
+    states: states.map(x=>x[0]).slice(0,3),
+    bodySignals: bodies.map(x=>x[0]).slice(0,3),
+    contexts: countItems(entries,"contexts").map(x=>x[0]).slice(0,3),
+    date: new Date().toISOString()
+  }, entries);
+  updateOrbByState([states[0] ? states[0][0] : ""], "moodOrb");
+  const orb = document.getElementById("moodOrb");
+  if(orb && risk.score >= 0.60){
+    orb.classList.add("high-risk");
+    orb.style.setProperty("--orb1", "rgba(91,106,116,.62)");
+    orb.style.setProperty("--orb2", "rgba(60,70,76,.70)");
+    orb.style.setProperty("--orb3", "rgba(28,31,34,.82)");
+  }else if(orb){
+    orb.classList.remove("high-risk");
+  }
+}
+function exportData(){
+  const data = JSON.stringify(getEntries(), null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "psych-manual-entries.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function clearData(){
+  if(!confirm("確定要清除全部資料嗎？這個動作無法復原。")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  showPage("homePage");
+}
+function escapeHtml(text){
+  return String(text).replace(/[&<>"']/g, m => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+initDate();
+renderHomeInsight();
+</script>
+</body>
+</html>
