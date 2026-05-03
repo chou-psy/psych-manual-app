@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理使用手冊</title>
+<style>
+:root{
+  --charcoal:#171a19;
+  --charcoal2:#202421;
+  --ink:#f5f0e7;
+  --muted:rgba(245,240,231,.62);
+  --line:rgba(255,255,255,.14);
+  --glass:rgba(255,255,255,.095);
+  --glass2:rgba(255,255,255,.135);
+  --mint:#b8e5d6;
+  --mint2:#7bbfa9;
+  --sand:#d8b98f;
+  --terracotta:#a86c55;
+  --rose:#b98683;
+  --shadow:0 24px 80px rgba(0,0,0,.34);
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;
+  color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;
+  background:
+    radial-gradient(circle at 16% 9%, rgba(184,229,214,.38), transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(216,185,143,.30), transparent 30%),
+    radial-gradient(circle at 46% 84%, rgba(168,108,85,.32), transparent 35%),
+    linear-gradient(145deg,#111312,#1e2321 52%,#161716);
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:-30%;
+  background:
+    conic-gradient(from 180deg at 50% 50%, rgba(184,229,214,.08), rgba(216,185,143,.11), rgba(185,134,131,.08), rgba(184,229,214,.08));
+  filter:blur(60px);
+  animation:aurora 24s ease-in-out infinite alternate;
+  pointer-events:none;
+}
+@keyframes aurora{
+  from{transform:translate3d(-2%,1%,0) rotate(0deg) scale(1)}
+  to{transform:translate3d(2%,-1%,0) rotate(8deg) scale(1.08)}
+}
+.particles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+}
+.particles span{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:rgba(255,255,255,.42);
+  filter:blur(.2px);
+  animation:float 18s linear infinite;
+}
+.particles span:nth-child(1){left:8%;animation-delay:0s;animation-duration:23s}
+.particles span:nth-child(2){left:18%;animation-delay:-7s;animation-duration:28s}
+.particles span:nth-child(3){left:29%;animation-delay:-4s;animation-duration:21s}
+.particles span:nth-child(4){left:42%;animation-delay:-13s;animation-duration:32s}
+.particles span:nth-child(5){left:55%;animation-delay:-6s;animation-duration:25s}
+.particles span:nth-child(6){left:66%;animation-delay:-16s;animation-duration:29s}
+.particles span:nth-child(7){left:79%;animation-delay:-10s;animation-duration:22s}
+.particles span:nth-child(8){left:91%;animation-delay:-2s;animation-duration:31s}
+@keyframes float{
+  0%{top:-8%;opacity:0;transform:translateX(0)}
+  12%{opacity:.55}
+  100%{top:108%;opacity:0;transform:translateX(42px)}
+}
+.app{
+  position:relative;
+  z-index:1;
+  max-width:520px;
+  min-height:100vh;
+  margin:0 auto;
+  padding:28px 20px 112px;
+}
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  margin-bottom:54px;
+}
+.brand{
+  letter-spacing:.18em;
+  font-size:12px;
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.date{
+  text-align:right;
+  color:var(--ink);
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  line-height:1;
+}
+.date .month{
+  font-size:12px;
+  letter-spacing:.16em;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.date .day{
+  font-size:36px;
+}
+.hero{
+  margin:0 0 46px;
+  padding-left:6px;
+}
+h1{
+  margin:0;
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-weight:500;
+  font-size:52px;
+  line-height:1.02;
+  letter-spacing:-.045em;
+}
+.hero p{
+  margin:24px 0 0 26px;
+  max-width:360px;
+  color:var(--muted);
+  font-size:16px;
+  line-height:2;
+}
+.orb-wrap{
+  position:relative;
+  min-height:320px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:10px 0 36px;
+}
+.orb{
+  width:238px;
+  height:238px;
+  border-radius:46% 54% 52% 48%;
+  background:
+    radial-gradient(circle at 30% 26%, rgba(255,255,255,.85), transparent 18%),
+    radial-gradient(circle at 66% 72%, rgba(168,108,85,.35), transparent 34%),
+    linear-gradient(145deg, rgba(184,229,214,.88), rgba(216,185,143,.66) 54%, rgba(185,134,131,.52));
+  box-shadow:
+    inset 22px 24px 54px rgba(255,255,255,.18),
+    inset -24px -30px 66px rgba(24,27,26,.22),
+    0 28px 90px rgba(184,229,214,.18),
+    0 36px 110px rgba(0,0,0,.34);
+  filter:saturate(.88);
+  animation:morph 10s ease-in-out infinite alternate;
+}
+@keyframes morph{
+  0%{border-radius:46% 54% 52% 48%;transform:translateY(0) scale(1)}
+  50%{border-radius:56% 44% 48% 52%;transform:translateY(-8px) scale(1.02)}
+  100%{border-radius:43% 57% 58% 42%;transform:translateY(4px) scale(.99)}
+}
+.orb-note{
+  position:absolute;
+  bottom:4px;
+  left:20px;
+  right:20px;
+  text-align:center;
+  color:var(--muted);
+  line-height:1.9;
+  font-size:14px;
+}
+.glass{
+  background:linear-gradient(145deg, rgba(255,255,255,.14), rgba(255,255,255,.06));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow);
+  backdrop-filter:blur(22px);
+  border-radius:34px;
+}
+.panel{
+  padding:26px;
+  margin:22px 0;
+}
+.panel-title{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:25px;
+  font-weight:500;
+  margin:0 0 12px;
+  letter-spacing:-.02em;
+}
+.panel-text{
+  color:var(--muted);
+  line-height:1.9;
+  margin:0 0 22px;
+  font-size:15px;
+}
+.actions{
+  display:grid;
+  gap:14px;
+  margin-top:26px;
+}
+.lux-button{
+  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.08);
+  color:var(--ink);
+  min-height:58px;
+  border-radius:999px;
+  font-size:15px;
+  letter-spacing:.08em;
+  backdrop-filter:blur(16px);
+  box-shadow:0 18px 46px rgba(0,0,0,.18);
+}
+.lux-button.primary{
+  background:linear-gradient(135deg, rgba(184,229,214,.82), rgba(216,185,143,.58));
+  color:#17201d;
+  font-weight:700;
+}
+.page{display:none}
+.page.active{display:block}
+.step-mark{
+  display:flex;
+  gap:8px;
+  margin-bottom:28px;
+}
+.step-mark span{
+  height:4px;
+  flex:1;
+  border-radius:999px;
+  background:rgba(255,255,255,.13);
+}
+.step-mark span.active{
+  background:linear-gradient(90deg,var(--mint),var(--sand));
+}
+.prompt{
+  font-family:Georgia,"Times New Roman","Noto Serif TC",serif;
+  font-size:30px;
+  line-height:1.35;
+  letter-spacing:-.03em;
+  margin:0 0 12px;
+}
+.subprompt{
+  color:var(--muted);
+  line-height:1.85;
+  font-size:15px;
+  margin:0 0 26px;
+}
+.orbit-options{
+  position:relative;
+  min-height:390px;
+}
+.choice{
+  position:relative;
+  display:inline-flex;
+  min-height:54px;
+  align-items:center;
+  justify-content:center;
+  padding:12px 18px;
+  margin:7px 5px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:999px;
+  background:rgba(255,255,255,.075);
+  color:rgba(245,240,231,.86);
+  backdrop-filter:blur(14px);
+  box-shadow:0 14px 32px rgba(0,0,0,.16);
+  font-size:15px;
+}
+.choice.selected{
+  background:linear-gradient(135deg, rgba(184,229,214,.76), rgba(216,185,143,.55));
+  color:#17201d;
+  border-color:rgba(255,255,255,.35);
+  font-weight:700;
+}
+textarea{
+  width:100%;
+  min-height:180px;
+  color:var(--ink);
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:30px;
+  padding:20px;
+  font-size:16px;
+  line-height:1.9;
+  outline:none;
+  resize:vertical;
+  backdrop-filter:blur(18px);
+}
+textarea:focus{
+  border-color:rgba(184,229,214,.48);
+  box-shadow:0 0 0 5px rgba(184,229,214,.08);
+}
+textarea::placeholder{color:rgba(245,240,231,.36)}
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  margin-top:26px;
+}
+.nav-row .lux-button{
+  min-width:0;
+  flex:1;
+}
+.feedback{
+  font-size:21px;
+  line-height:1.9;
+  color:rgba(245,240,231,.9);
+}
+.record{
+  padding:20px 0;
+  border-top:1px solid rgba(255,255,255,.11);
+}
+.record:first-child{border-top:0}
+.record-time{
+  color:var(--muted);
+  font-size:13px;
+  letter-spacing:.08em;
+  margin-bottom:12px;
+}
+.pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.pill{
+  display:inline-flex;
+  border-radius:999px;
+  padding:7px 11px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(245,240,231,.78);
+  font-size:13px;
+}
+.note{
+  margin-top:14px;
+  line-height:1.9;
+  color:rgba(245,240,231,.88);
+  white-space:pre-wrap;
+}
+.nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:3;
+  padding:12px 14px 18px;
+  background:linear-gradient(to top, rgba(23,26,25,.92), rgba(23,26,25,.54), transparent);
+}
+.nav-inner{
+  max-width:520px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.nav button{
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  color:rgba(245,240,231,.58);
+  backdrop-filter:blur(18px);
+  border-radius:18px;
+  min-height:46px;
+  font-size:13px;
+}
+.nav button.active{
+  color:#17201d;
+  background:linear-gradient(135deg, rgba(184,229,214,.88), rgba(216,185,143,.62));
+  font-weight:700;
+}
+.empty{
+  color:var(--muted);
+  line-height:1.9;
+}
+.summary-line{
+  line-height:1.95;
+  margin:13px 0;
+  color:rgba(245,240,231,.86);
+}
+.small-danger{
+  margin-top:14px;
+  border:1px solid rgba(168,108,85,.38);
+  color:rgba(245,240,231,.8);
+  background:rgba(168,108,85,.14);
+}
+@media(max-width:410px){
+  .app{padding-left:16px;padding-right:16px}
+  h1{font-size:44px}
+  .orb{width:216px;height:216px}
+  .choice{font-size:14px;padding:11px 15px}
+}
+@media (prefers-reduced-motion:reduce){
+  body:before,.orb,.particles span{animation:none}
+}
+</style>
+</head>
+<body>
+<div class="particles" aria-hidden="true">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<div class="app">
+  <header class="header">
+    <div>
+      <div class="brand">PRIVATE PSYCH MANUAL</div>
+    </div>
+    <div class="date">
+      <div class="month" id="monthText"></div>
+      <div class="day" id="dayText"></div>
+    </div>
+  </header>
+
+  <main id="homePage" class="page active">
+    <section class="hero">
+      <h1>今晚先把自己<br>放回身邊</h1>
+      <p>不需要整理成一份報告。只留下一點光、一點身體的訊號、一段還沒有說完的話。</p>
+    </section>
+
+    <section class="orb-wrap" aria-label="情緒光影球體">
+      <div class="orb" id="moodOrb"></div>
+      <div class="orb-note" id="homeInsight">先留下幾筆，這顆球會慢慢帶出你近期的狀態顏色。</div>
+    </section>
+
+    <section class="glass panel">
+      <p class="panel-title">今天想怎麼靠近自己</p>
+      <p class="panel-text">這裡不急著問原因，只先讓感受有一個位置。</p>
+      <div class="actions">
+        <button class="lux-button primary" onclick="startDaily()">開始今日記錄</button>
+        <button class="lux-button" onclick="startQuick()">隨手留下一段</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="recordPage" class="page">
+    <section class="glass panel">
+      <div class="step-mark">
+        <span id="dot1"></span><span id="dot2"></span><span id="dot3"></span><span id="dot4"></span>
+      </div>
+
+      <div id="step1">
+        <p class="prompt">今天比較靠近哪幾種狀態</p>
+        <p class="subprompt">可以選一個，也可以讓幾種狀態同時存在。</p>
+        <div class="orbit-options" id="stateOptions"></div>
+      </div>
+
+      <div id="step2" style="display:none">
+        <p class="prompt">身體哪裡先有了訊號</p>
+        <p class="subprompt">不用判斷原因，先把感覺放在這裡。</p>
+        <div class="orbit-options" id="bodyOptions"></div>
+      </div>
+
+      <div id="step3" style="display:none">
+        <p class="prompt">這一段比較接近什麼場景</p>
+        <p class="subprompt">只是留下線索，不需要把故事說完。</p>
+        <div class="orbit-options" id="contextOptions"></div>
+      </div>
+
+      <div id="step4" style="display:none">
+        <p class="prompt">有沒有一句話想留下來</p>
+        <p class="subprompt">可以很短，也可以空白。</p>
+        <textarea id="note" placeholder="例如：今天某個瞬間，我突然不想再解釋。"></textarea>
+        <div style="height:22px"></div>
+        <p class="prompt" style="font-size:24px">今天有沒有一點比較亮的片段</p>
+        <p class="subprompt">很小也可以。</p>
+        <textarea id="positiveMoment" placeholder="例如：回家路上風有一點涼。"></textarea>
+      </div>
+
+      <div class="nav-row">
+        <button class="lux-button" id="backBtn" onclick="prevStep()">回上一段</button>
+        <button class="lux-button primary" id="nextBtn" onclick="nextStep()">往下一段</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="feedbackPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">這一筆已經留下</p>
+      <div class="feedback" id="feedbackText"></div>
+      <div class="nav-row">
+        <button class="lux-button" onclick="showPage('recordsPage')">看紀錄</button>
+        <button class="lux-button primary" onclick="showPage('homePage')">回到首頁</button>
+      </div>
+    </section>
+  </main>
+
+  <main id="recordsPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">留下來的片段</p>
+      <p class="panel-text">資料目前只存在這台裝置與這個瀏覽器。</p>
+      <div id="recordsList"></div>
+    </section>
+  </main>
+
+  <main id="summaryPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">最近七天的輪廓</p>
+      <p class="panel-text">累積幾筆後，這裡會整理重複出現的狀態、身體訊號和場景。</p>
+      <div id="weeklySummary"></div>
+    </section>
+  </main>
+
+  <main id="settingsPage" class="page">
+    <section class="glass panel">
+      <p class="panel-title">資料與提醒</p>
+      <p class="panel-text">這個工具用來協助自我記錄與整理，不能取代心理治療、醫療診斷或緊急協助。若有立即傷害自己或他人的風險，請立刻聯絡當地緊急資源，或尋求身邊可信任的人協助。</p>
+      <p class="panel-text">目前資料只儲存在你使用的這台裝置與瀏覽器中。更換裝置、清除瀏覽器資料或使用無痕模式，可能會讓資料消失。</p>
+      <button class="lux-button" onclick="exportData()">匯出資料</button>
+      <button class="lux-button small-danger" onclick="clearData()">清除全部資料</button>
+    </section>
+  </main>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <button id="navHome" class="active" onclick="showPage('homePage')">首頁</button>
+    <button id="navRecords" onclick="showPage('recordsPage')">紀錄</button>
+    <button id="navSummary" onclick="showPage('summaryPage')">整理</button>
+    <button id="navSettings" onclick="showPage('settingsPage')">設定</button>
+  </div>
+</nav>
+
+<script>
+const STORAGE_KEY = "psychManualEntriesV5";
+
+const stateList = [
+  "一直撐著","想躲起來","心裡很吵","很煩","很空","有點麻木",
+  "不想說話","很想被理解","很想逃開","有點委屈","有點生氣","有點怕",
+  "提不起勁","想把事情做好","腦袋停不下來","覺得自己很糟",
+  "好像被卡住","不想再解釋","有點孤單","很想安靜",
+  "比較平靜","還可以","有一點亮起來","說不上來"
+];
+
+const bodyList = [
+  "胸口緊","肩頸硬","頭脹","胃不舒服","呼吸變淺","身體很重",
+  "想睡","坐立難安","心跳變快","喉嚨卡住","眼睛酸","手腳冰冷",
+  "背很緊","下巴咬緊","肚子緊","全身沒力","手心出汗","耳朵很滿",
+  "皮膚緊繃","腦袋發熱","沒什麼感覺","比較放鬆","有一點力氣","說不上來"
+];
+
+const contextList = [
+  "工作","家人","伴侶","朋友","金錢","健康","睡眠","社群媒體",
+  "自我要求","未來","回憶","人際訊息","時間壓力","身體不舒服",
+  "突來的安靜","沒有特定事件"
+];
+
+let currentStep = 1;
+let currentType = "daily";
+let draft = { states:[], bodySignals:[], contexts:[] };
+
+function initDate(){
+  const d = new Date();
+  document.getElementById("monthText").textContent = String(d.getMonth()+1).padStart(2,"0") + "月";
+  document.getElementById("dayText").textContent = String(d.getDate()).padStart(2,"0");
+}
+
+function getEntries(){
+  return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+}
+function setEntries(entries){
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+}
+function renderOptions(id, list, key){
+  const wrap = document.getElementById(id);
+  wrap.innerHTML = "";
+  list.forEach(item => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "choice";
+    btn.textContent = item;
+    btn.onclick = () => {
+      const arr = draft[key];
+      const index = arr.indexOf(item);
+      if(index >= 0){
+        arr.splice(index,1);
+        btn.classList.remove("selected");
+      }else{
+        arr.push(item);
+        btn.classList.add("selected");
+      }
+      updateOrb();
+    };
+    wrap.appendChild(btn);
+  });
+}
+function startDaily(){
+  currentType = "daily";
+  resetDraft();
+  showPage("recordPage");
+}
+function startQuick(){
+  currentType = "quick";
+  resetDraft();
+  showPage("recordPage");
+}
+function resetDraft(){
+  currentStep = 1;
+  draft = { states:[], bodySignals:[], contexts:[] };
+  document.getElementById("note").value = "";
+  document.getElementById("positiveMoment").value = "";
+  renderOptions("stateOptions", stateList, "states");
+  renderOptions("bodyOptions", bodyList, "bodySignals");
+  renderOptions("contextOptions", contextList, "contexts");
+  updateStep();
+}
+function updateStep(){
+  for(let i=1;i<=4;i++){
+    document.getElementById("step"+i).style.display = i === currentStep ? "block" : "none";
+    document.getElementById("dot"+i).classList.toggle("active", i <= currentStep);
+  }
+  document.getElementById("backBtn").style.visibility = currentStep === 1 ? "hidden" : "visible";
+  document.getElementById("nextBtn").textContent = currentStep === 4 ? "把這一段留下" : "往下一段";
+}
+function nextStep(){
+  if(currentStep < 4){
+    currentStep++;
+    updateStep();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }else{
+    saveEntry();
+  }
+}
+function prevStep(){
+  if(currentStep > 1){
+    currentStep--;
+    updateStep();
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+}
+function saveEntry(){
+  const entry = {
+    id: "entry_" + Date.now(),
+    date: new Date().toISOString(),
+    type: currentType,
+    states: draft.states,
+    bodySignals: draft.bodySignals,
+    contexts: draft.contexts,
+    note: document.getElementById("note").value.trim(),
+    positiveMoment: document.getElementById("positiveMoment").value.trim(),
+    feedback: makeFeedback(draft.states, draft.bodySignals),
+    createdAt: new Date().toISOString()
+  };
+  const entries = getEntries();
+  entries.push(entry);
+  setEntries(entries);
+  document.getElementById("feedbackText").textContent = entry.feedback;
+  showPage("feedbackPage");
+}
+function makeFeedback(states, bodySignals){
+  const s = states.join(" ");
+  const b = bodySignals.join(" ");
+  if(s.includes("一直撐著")){
+    return "今天有一部分的你，花了不少力氣讓事情維持在表面正常。這一筆先留在這裡，讓它不用立刻被解釋。";
+  }
+  if(s.includes("想躲起來") || s.includes("很想逃開")){
+    return "想離遠一點的感覺先被記下來。它可能是一種過滿，也可能是你暫時替自己留下的距離。";
+  }
+  if(s.includes("很空") || s.includes("有點麻木")){
+    return "空掉或麻木的地方，不一定需要立刻被說明。這一筆先留下來，讓空白也有位置。";
+  }
+  if(s.includes("心裡很吵") || s.includes("腦袋停不下來")){
+    return "裡面同時有太多聲音時，先記下一小段，就已經是在替自己留位置。";
+  }
+  if(s.includes("有一點亮起來") || s.includes("比較平靜")){
+    return "這一點比較鬆動的片段值得被保存。之後回看時，它可能會成為一個線索。";
+  }
+  if(b.includes("胸口緊") || b.includes("呼吸變淺")){
+    return "身體已經先留下訊號。語言還沒跟上也沒有關係，今天先把它放在這裡。";
+  }
+  return "這一筆可以先留著，不需要急著把它整理成答案。";
+}
+function showPage(pageId){
+  ["homePage","recordPage","feedbackPage","recordsPage","summaryPage","settingsPage"].forEach(id=>{
+    document.getElementById(id).classList.toggle("active", id === pageId);
+  });
+  document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+  if(pageId==="homePage") document.getElementById("navHome").classList.add("active");
+  if(pageId==="recordsPage") document.getElementById("navRecords").classList.add("active");
+  if(pageId==="summaryPage") document.getElementById("navSummary").classList.add("active");
+  if(pageId==="settingsPage") document.getElementById("navSettings").classList.add("active");
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+function formatDate(iso){
+  const d = new Date(iso);
+  return d.toLocaleString("zh-TW", { month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit" });
+}
+function renderRecords(){
+  const entries = getEntries().slice().reverse();
+  const wrap = document.getElementById("recordsList");
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">目前還沒有紀錄。</div>';
+    return;
+  }
+  wrap.innerHTML = entries.map(e=>`
+    <div class="record">
+      <div class="record-time">${formatDate(e.date)}</div>
+      <div class="pills">
+        ${(e.states||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+        ${(e.bodySignals||[]).map(x=>`<span class="pill">${escapeHtml(x)}</span>`).join("")}
+      </div>
+      ${e.contexts && e.contexts.length ? `<div class="note" style="color:rgba(245,240,231,.62)">${e.contexts.map(escapeHtml).join("、")}</div>` : ""}
+      ${e.note ? `<div class="note">${escapeHtml(e.note)}</div>` : ""}
+      ${e.positiveMoment ? `<div class="note">比較亮的片段：${escapeHtml(e.positiveMoment)}</div>` : ""}
+      <div class="note" style="color:rgba(245,240,231,.62)">${escapeHtml(e.feedback || "")}</div>
+      <button class="lux-button small-danger" onclick="deleteEntry('${e.id}')">刪除這一筆</button>
+    </div>
+  `).join("");
+}
+function deleteEntry(id){
+  if(!confirm("確定要刪除這一筆紀錄嗎？")) return;
+  setEntries(getEntries().filter(e=>e.id!==id));
+  renderRecords();
+  renderSummary();
+  renderHomeInsight();
+}
+function recentEntries(days){
+  const now = Date.now();
+  return getEntries().filter(e => now - new Date(e.date).getTime() <= days*24*60*60*1000);
+}
+function countItems(entries, key){
+  const counts = {};
+  entries.forEach(e => (e[key]||[]).forEach(item => counts[item] = (counts[item]||0)+1));
+  return Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+}
+function renderSummary(){
+  const entries = recentEntries(7);
+  const wrap = document.getElementById("weeklySummary");
+  if(!entries.length){
+    wrap.innerHTML = '<div class="empty">最近七天還沒有紀錄。先累積幾筆，這裡會開始整理。</div>';
+    return;
+  }
+  const states = countItems(entries,"states").slice(0,5);
+  const bodies = countItems(entries,"bodySignals").slice(0,5);
+  const contexts = countItems(entries,"contexts").slice(0,5);
+  const positives = entries.map(e=>e.positiveMoment).filter(Boolean).slice(-3);
+  wrap.innerHTML = `
+    <div class="summary-line">最近七天共留下 ${entries.length} 筆紀錄。</div>
+    <div class="summary-line">常出現的狀態：${states.length ? states.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line">常出現的身體訊號：${bodies.length ? bodies.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line">常見場景：${contexts.length ? contexts.map(x=>`${x[0]} ${x[1]}次`).join("、") : "尚不明顯"}</div>
+    <div class="summary-line">可能值得留意：${makeInsight(states,bodies)}</div>
+    <div class="summary-line">比較亮的片段：${positives.length ? positives.map(escapeHtml).join("；") : "這週還沒有特別留下。"}</div>
+  `;
+}
+function makeInsight(states,bodies){
+  const repeatedState = states.find(x=>x[1]>=3);
+  const repeatedBody = bodies.find(x=>x[1]>=3);
+  if(repeatedState && repeatedBody){
+    return `「${repeatedState[0]}」和「${repeatedBody[0]}」最近比較常一起出現。它們可能是你近期的壓力線索。`;
+  }
+  if(repeatedState){
+    return `「${repeatedState[0]}」最近出現得比較頻繁。先不用處理，先看見它。`;
+  }
+  if(repeatedBody){
+    return `「${repeatedBody[0]}」最近出現得比較頻繁。身體可能正在留下訊號。`;
+  }
+  return "目前還看不出穩定模式，可以再多累積幾筆。";
+}
+function renderHomeInsight(){
+  const entries = recentEntries(7);
+  const el = document.getElementById("homeInsight");
+  if(!entries.length){
+    el.textContent = "先留下幾筆，這顆球會慢慢帶出你近期的狀態顏色。";
+    return;
+  }
+  const states = countItems(entries,"states");
+  const bodies = countItems(entries,"bodySignals");
+  el.textContent = makeInsight(states,bodies);
+  updateOrbFromEntries(states);
+}
+function updateOrb(){
+  const orb = document.getElementById("moodOrb");
+  const s = draft.states.join(" ");
+  if(s.includes("心裡很吵") || s.includes("腦袋停不下來")){
+    orb.style.filter = "saturate(.8) hue-rotate(35deg)";
+  }else if(s.includes("很空") || s.includes("有點麻木")){
+    orb.style.filter = "saturate(.45) hue-rotate(-18deg)";
+  }else if(s.includes("有一點亮起來") || s.includes("比較平靜")){
+    orb.style.filter = "saturate(.95) hue-rotate(-32deg) brightness(1.08)";
+  }else{
+    orb.style.filter = "saturate(.88)";
+  }
+}
+function updateOrbFromEntries(states){
+  const orb = document.getElementById("moodOrb");
+  if(!orb || !states.length) return;
+  const top = states[0][0];
+  if(top.includes("心裡很吵") || top.includes("腦袋停不下來")){
+    orb.style.filter = "saturate(.8) hue-rotate(35deg)";
+  }else if(top.includes("很空") || top.includes("有點麻木")){
+    orb.style.filter = "saturate(.45) hue-rotate(-18deg)";
+  }else if(top.includes("有一點亮起來") || top.includes("比較平靜")){
+    orb.style.filter = "saturate(.95) hue-rotate(-32deg) brightness(1.08)";
+  }
+}
+function exportData(){
+  const data = JSON.stringify(getEntries(), null, 2);
+  const blob = new Blob([data], {type:"application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "psych-manual-entries.json";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+function clearData(){
+  if(!confirm("確定要清除全部資料嗎？這個動作無法復原。")) return;
+  localStorage.removeItem(STORAGE_KEY);
+  showPage("homePage");
+}
+function escapeHtml(text){
+  return String(text).replace(/[&<>"']/g, m => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+  }[m]));
+}
+
+initDate();
+renderHomeInsight();
+</script>
+</body>
+</html>
