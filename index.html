@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理使用手冊</title>
+
+<style>
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, "Noto Sans TC", sans-serif;
+  background:#f4f2f0;
+  color:#1a1a1a;
+}
+
+/* subtle snow light */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5) 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgba(255,255,255,0.4) 1px, transparent 2px);
+  animation: drift 30s linear infinite;
+}
+@keyframes drift{
+  from{transform:translateY(0)}
+  to{transform:translateY(60px)}
+}
+
+.container{
+  max-width:480px;
+  margin:0 auto;
+  padding:48px 20px 100px;
+}
+
+.header{
+  margin-bottom:40px;
+}
+
+.title{
+  font-family: "Times New Roman", serif;
+  font-size:38px;
+  line-height:1.2;
+}
+
+.date{
+  margin-top:12px;
+  font-size:13px;
+  color:#777;
+}
+
+/* entry card */
+.entry{
+  background:white;
+  border-radius:24px;
+  padding:24px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.05);
+}
+
+.section{
+  margin-bottom:24px;
+}
+
+.label{
+  font-size:14px;
+  margin-bottom:12px;
+  color:#444;
+}
+
+/* card options */
+.options{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.option{
+  padding:10px 14px;
+  border-radius:20px;
+  background:#f2f2f2;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.option.active{
+  background:linear-gradient(135deg,#d8c7ff,#ffd7e3);
+}
+
+/* textarea */
+textarea{
+  width:100%;
+  border:none;
+  border-bottom:1px solid #ddd;
+  padding:10px 0;
+  font-size:14px;
+  background:transparent;
+}
+
+/* button */
+.action{
+  text-align:right;
+  margin-top:20px;
+}
+
+button{
+  background:none;
+  border:none;
+  font-size:14px;
+  color:#222;
+  cursor:pointer;
+}
+
+.feedback{
+  margin-top:24px;
+  line-height:1.8;
+  font-size:15px;
+}
+
+.records{
+  margin-top:30px;
+  font-size:13px;
+  color:#666;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+  <div class="title">今天，<br>靠近一點自己</div>
+  <div class="date" id="date"></div>
+</div>
+
+<div class="entry">
+
+<div class="section">
+<div class="label">狀態</div>
+<div class="options" id="states"></div>
+</div>
+
+<div class="section">
+<div class="label">身體</div>
+<div class="options" id="body"></div>
+</div>
+
+<div class="section">
+<div class="label">片段</div>
+<textarea id="note"></textarea>
+</div>
+
+<div class="action">
+<button onclick="save()">把這一段留下來</button>
+</div>
+
+</div>
+
+<div class="feedback" id="feedback"></div>
+<div class="records" id="records"></div>
+
+</div>
+
+<script>
+
+const stateList = [
+"一直撐著","很累","很空","想躲起來","很煩","提不起勁",
+"心裡很吵","想逃開","還可以","有點好轉","說不上來"
+];
+
+const bodyList = [
+"胸口緊","肩頸硬","頭脹","呼吸淺","身體很重",
+"沒感覺","心跳快","想睡","全身無力"
+];
+
+let selectedState=[];
+let selectedBody=[];
+
+function renderOptions(id,list,store){
+  const el=document.getElementById(id);
+  el.innerHTML="";
+  list.forEach(item=>{
+    const div=document.createElement("div");
+    div.className="option";
+    div.innerText=item;
+    div.onclick=()=>{
+      if(store.includes(item)){
+        store.splice(store.indexOf(item),1);
+        div.classList.remove("active");
+      }else{
+        store.push(item);
+        div.classList.add("active");
+      }
+    }
+    el.appendChild(div);
+  });
+}
+
+function save(){
+  const note=document.getElementById("note").value;
+
+  const entry={
+    state:selectedState,
+    body:selectedBody,
+    note,
+    time:new Date().toISOString()
+  };
+
+  const data=JSON.parse(localStorage.getItem("data")||"[]");
+  data.push(entry);
+  localStorage.setItem("data",JSON.stringify(data));
+
+  document.getElementById("feedback").innerText=getFeedback();
+  render();
+}
+
+function getFeedback(){
+  if(selectedState.includes("一直撐著")){
+    return "今天有一部分的你，花了很多力氣讓事情維持著。";
+  }
+  if(selectedState.includes("想躲起來")){
+    return "你讓自己稍微退開了一點距離。";
+  }
+  return "這一筆先留著。";
+}
+
+function render(){
+  const data=JSON.parse(localStorage.getItem("data")||"[]");
+  document.getElementById("records").innerHTML=
+  data.slice().reverse().map(d=>`
+    <div>${d.state.join("、")} / ${d.body.join("、")}<br>${d.note||""}</div><br>
+  `).join("");
+}
+
+function setDate(){
+  const d=new Date();
+  document.getElementById("date").innerText=
+  d.getFullYear()+"."+ (d.getMonth()+1)+"."+d.getDate();
+}
+
+renderOptions("states",stateList,selectedState);
+renderOptions("body",bodyList,selectedBody);
+setDate();
+render();
+
+</script>
+
+</body>
+</html>
